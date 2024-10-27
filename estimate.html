@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estimate Game</title>
+  <link rel="stylesheet" type="text/css" href="index.css">
+  <link rel="stylesheet" type="text/css" href="game.css">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <div class="logo">
+        <h2>Gamers Benchmark</h2>
+    </div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <a href="about.html">About</a>
+        <a href="#">Login/Signup</a>
+    </div>
+  </div>
+
+  <div class="game-space">
+    <h1>Estimate Number of Objects</h1>
+    <p>
+      A number of objects will be displayed in the game window.
+      Objects are shown for 10 seconds, and then they are cleared
+      from the window. Guess how many appeared!
+    </p>
+    <button class="btn" onclick="generateObjects()">Play</button>
+    <canvas id="canvas" class="game-window" width=400 height=400></canvas>
+    <div>
+      <input type="text" name="est_submission" id="est_submission" placeholder="Guess a number...">
+      <button id="est_submit_btn" class="btn-d" onclick="answerSubmitted()">Submit</button>
+      <!-- <input type="submit" id="est_submit_btn" class="btn" value="Submit"> -->
+    </div>
+    <p id="results">Results: </p>
+
+    <!-- Compile and buffer functions for WebGL -->
+    <script src="estimate/webgl.js"></script>
+
+    <!-- Script to run the game -->
+    <script src="estimate/estimate_game.js"></script>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2024 Gamers Benchmark. All rights reserved. | <a href="#">Privacy Policy</a></p>
+  </div>
+
+</body>
+</html>
