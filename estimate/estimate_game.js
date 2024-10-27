@@ -48,6 +48,8 @@ var num_objects;
 function generateObjects() {
     // Clear
     gl.clear(gl.COLOR_BUFFER_BIT);
+
+    // Show submission field/button, enable button, make sub field empty
     submission_field.style.visibility="visible";
     submission_btn.style.visibility="visible";
     submission_btn.classList.remove("btn-d");
@@ -87,13 +89,18 @@ function generateObjects() {
         gl.uniform4f(color, r, g, b, 1);
         gl.drawArrays(gl.POINTS, 0, 1);
       }
+      
+    // Call function to clear board after 10 seconds
+    setTimeout(()=>{gl.clear(gl.COLOR_BUFFER_BIT);}, 10000);
 }
 
 function answerSubmitted() {
+    // Disable submit button and make results visible
     submission_btn.classList.remove("btn");
     submission_btn.classList.add("btn-d");
     results.style.visibility="visible";
 
+    // Read int from guess and display accuracy
     var guess = parseInt(submission_field.value, 10);
     if (guess > num_objects) {
         results.innerHTML = "You're guess was " + (guess - num_objects) + " over.";
