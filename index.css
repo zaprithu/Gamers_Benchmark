@@ -124,3 +124,127 @@ body {
 .footer a:hover {
     text-decoration: underline;
 }
+
+.login-container {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-container h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.login-container label {
+    display: block;
+    font-size: 18px;
+    color: #666;
+    margin: 15px 0 5px;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.login-container input[type="text"]:focus,
+.login-container input[type="password"]:focus {
+    border-color: #333;
+    outline: none;
+}
+
+.login-container .btn {
+    width: 100%;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.login-container p {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #666;
+}
+
+.login-container a {
+    color: #333;
+    text-decoration: none;
+}
+
+.login-container a:hover {
+    text-decoration: underline;
+}
+
+.signup-container {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.signup-container h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.signup-container label {
+    display: block;
+    font-size: 18px;
+    color: #666;
+    margin: 15px 0 5px;
+}
+
+.signup-container input[type="text"],
+.signup-container input[type="email"],
+.signup-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.signup-container input[type="text"]:focus,
+.signup-container input[type="email"]:focus,
+.signup-container input[type="password"]:focus {
+    border-color: #333;
+    outline: none;
+}
+
+.signup-container .btn {
+    width: 100%;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.signup-container p {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #666;
+}
+
+.signup-container a {
+    color: #333;
+    text-decoration: none;
+}
+
+.signup-container a:hover {
+    text-decoration: underline;
+}
