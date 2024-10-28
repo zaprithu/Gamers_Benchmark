@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Specifies the character encoding for proper text rendering -->
     <meta charset="UTF-8">
+    <!-- Ensures the page is responsive on all devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Sets the page title that appears on the browser tab -->
     <title>Login - Gamers Benchmark</title>
+    <!-- Links the external CSS file for consistent styling -->
     <link rel="stylesheet" href="../../index.css">
 </head>
 <body>
+    <!-- Navigation bar at the top of the page -->
     <div class="navbar">
+        <!-- Logo section for branding -->
         <div class="logo">
             <h2>Gamers Benchmark</h2>
         </div>
+        <!-- Navigation links to main sections of the website -->
         <div class="nav-links">
             <a href="../../index.html">Home</a>
             <a href="../leaderboard.html">Leaderboard</a>
@@ -19,20 +26,28 @@
         </div>
     </div>
 
+    <!-- Login container for user authentication form -->
     <div class="login-container">
+        <!-- Title for the login form -->
         <h2>Login</h2>
+        <!-- Form for user login with POST method for secure data submission -->
         <form action="login_handler.php" method="POST">
+            <!-- Label and input field for the username -->
             <label for="username">Username</label>
             <input type="text" id="username" name="username" required>
 
+            <!-- Label and input field for the password -->
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
 
+            <!-- Login button styled with the class "btn" -->
             <button type="submit" class="btn">Login</button>
+            <!-- Link to the signup page for users without an account -->
             <p>Don't have an account? <a href="signup.html">Sign up</a></p>
         </form>
     </div>
 
+    <!-- Footer section with copyright and privacy policy link -->
     <div class="footer">
         <p>&copy; 2024 Gamers Benchmark. All rights reserved. | <a href="#">Privacy Policy</a></p>
     </div>

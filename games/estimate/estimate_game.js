@@ -1,8 +1,31 @@
 /*
+    Estimate Game
+    Javscript functionality for running and displaying the game
+    Made by: Ethan Dirkes
+
+    Created 10/26/2024
+    Edited 10/27/2024:
+        Added comments
+    Preconditions:
+        Player must input a string as their guess for how many objects are present,
+        which is parsed as an int (non-int characters are ignored).
+    Postconditions:
+        Game objects are drawn from this file. Accuracy of player guess is displayed
+        after an estimate has been submitted.
+    Errors/exceptions:
+        None
+    Side effects:
+        None
+    Invariants:
+        gl: WebGL graphics context
+    Known faults:
+        None
+
     Shader/WebGL components borrowed from
     https://xem.github.io/articles/webgl-guide.html#2
 */
 
+// Get document elements of the submission text field, the submit button, and the results
 var submission_field = document.getElementById("est_submission");
 var submission_btn = document.getElementById("est_submit_btn");
 var results = document.getElementById("results");
@@ -10,7 +33,11 @@ var results = document.getElementById("results");
 // WebGL canvas context
 var gl = canvas.getContext('webgl', { preserveDrawingBuffer: true });
 
-// Vertex shader
+/*
+    Vertex shader, draws for each vertex of the instance.
+    vec4 position: position to draw the point for the current object
+    float size: size of the point to draw
+*/
 var vshader = `
 attribute vec4 position;
 attribute float size;
@@ -19,7 +46,11 @@ void main() {
   gl_PointSize = size;
 }`;
 
-// Fragment shader
+/*
+    Fragment shader, draws for each pixel of the object.
+    mediump float: float precision
+    vec4 color: color of the object to draw
+*/
 var fshader = `
 precision mediump float;
 uniform vec4 color;
@@ -35,10 +66,10 @@ var position = gl.getAttribLocation(program, 'position');
 var size = gl.getAttribLocation(program, 'size');
 var color = gl.getUniformLocation(program, 'color');
 
-// Set the clear color
+// Set the clear color (background color)
 gl.clearColor(0.0, 0.0, 0.0, 0.2);
 
-// Clear
+// Clear the window
 gl.clear(gl.COLOR_BUFFER_BIT);
 
 // Number of objects to generate for game
@@ -46,7 +77,7 @@ var num_objects;
 
 // Function to generate objects, called on every "play" button click
 function generateObjects() {
-    // Clear
+    // Clear the window
     gl.clear(gl.COLOR_BUFFER_BIT);
 
     // Show submission field/button, enable button, make sub field empty
@@ -57,7 +88,7 @@ function generateObjects() {
     results.style.visibility="hidden";
     submission_field.value = "";
 
-    // Generate number of objects
+    // Generate number of objects for game
     num_objects = Math.floor(Math.random() * 150 + 50);
     
     // Draw num_objects amount of objects
@@ -102,12 +133,15 @@ function answerSubmitted() {
 
     // Read int from guess and display accuracy
     var guess = parseInt(submission_field.value, 10);
+    // Over estimation
     if (guess > num_objects) {
         results.innerHTML = "You're guess was " + (guess - num_objects) + " over.";
     }
+    // Under estimation
     else if (guess < num_objects) {
         results.innerHTML = "You're guess was " + (num_objects - guess) + " under."
     }
+    // Correct estimation
     else {
         results.innerHTML = "You're guess was correct!";
     }

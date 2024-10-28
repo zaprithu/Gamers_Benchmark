@@ -1,6 +1,27 @@
 /*
-    Compile and buffer functions borrowed from
-    https://xem.github.io/articles/webgl-guide.html#2
+  Estimation Game
+  Compiles the the WebGL program from the vertex and fragment shaders
+  Made by: Ethan Dirkes
+
+  Created 10/26/2024
+  Edited 10/27/2024:
+    Added comments
+  
+    Preconditions:
+      gl context, vertex shader, fragment shader
+    Postconditions:
+      Returns the compiled program
+    Errors/exceptions:
+      None
+    Side effects:
+      None
+    Invariants:
+      None
+    Known faults:
+      None
+
+  Compile function borrowed from
+  https://xem.github.io/articles/webgl-guide.html#2
 */
 
 // Compile a WebGL program from a vertex shader and a fragment shader
@@ -23,19 +44,5 @@ compile = (gl, vshader, fshader) => {
     gl.linkProgram(program);
     gl.useProgram(program);
     
-    // Log errors (optional)
-    console.log('vertex shader:', gl.getShaderInfoLog(vs) || 'OK');
-    console.log('fragment shader:', gl.getShaderInfoLog(fs) || 'OK');
-    console.log('program:', gl.getProgramInfoLog(program) || 'OK');
-    
     return program;
-  }
-  
-  // Bind a data buffer to an attribute, fill it with data and enable it
-buffer = (gl, data, program, attribute, size, type) => {
-    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
-    gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
-    var a = gl.getAttribLocation(program, attribute);
-    gl.vertexAttribPointer(a, size, type, false, 0, 0);
-    gl.enableVertexAttribArray(a);
   }
