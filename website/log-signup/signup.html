@@ -1,3 +1,32 @@
+<!--
+- Name of code artifact: signin.html
+- Brief description of what the code does: This HTML file lays out a page wherein users are able to sign up for an account on the Gamers Benchmark website,
+allowing them to savee their scores and participate in the leaderboards if they do not already have an account. In case they do have an account, this allows them
+to navigate back to the login page.
+- Programmer’s name: Tommy Lam, Ethan Dirkes, Chase Entwistle, Christopher Gronewold, Zonaid Prithu
+- Date the code was created: Oct 27, 2024.
+- Preconditions:
+• Acceptable Input:
+    • Users must access this page using a compatible web browser that supports HTML5, CSS, and JavaScript.
+    • Links should work as long as the referenced HTML files and images are correctly located within the specified directories.
+- Unacceptable Input:
+    • Any access attempt through a browser that doesn’t support basic HTML5 features may lead to display issues.
+    • Missing resources (CSS, images, or linked HTML pages) will result in broken links or absent styles and images.
+- Postconditions:
+• Return Values or Types:
+    • The page renders with a navigation bar, hero section, game links, and footer in a visual layout.
+    • Displays appropriate images, navigation links, and button states (enabled/disabled) for each game.
+- Error and exception condition values or types that can occur, and their meanings:
+• Missing or broken links: If the linked HTML files or images don’t exist in the specified location, users will see errors (e.g., "404 Not Found") or broken images.
+• Styling errors: If index.css is missing or contains errors, the page layout may appear unstyled or improperly formatted.
+• JavaScript errors: Although minimal JavaScript is used, browser incompatibilities might prevent onclick events from functioning as intended.
+- Side effects: Navigating to other linked pages within the website, such as leaderboard.html or game pages like maze.html.
+- Invariants:
+• The navigation bar and footer should always display correctly, providing consistency in user experience across the site.
+• Game buttons set to btn-d (disabled class) will remain non-clickable until their pages are implemented and classes are updated to btn.
+- Any known faults:
+• Currently, some game buttons are disabled (btn-d class) and are placeholders until their pages are created.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
