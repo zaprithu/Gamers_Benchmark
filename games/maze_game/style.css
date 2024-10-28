@@ -1,35 +1,46 @@
-body {
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: #333;
+/* style.css */
+/* Styling for maze game interface */
+/* Author: Christopher Gronewold */
+/* Created: 10/26/2024 */
+/* Preconditions: None */
+/* Postconditions: Applies styles to HTML elements */
+/* Error conditions: None */
+/* Side effects: Visual changes to webpage */
+/* Invariants: None */
+/* Known faults: None */
+
+body {                                              /* Styles for entire document body */
+    margin: 0;                                      /* Removes default margin */
+    display: flex;                                  /* Uses flexbox layout */
+    justify-content: center;                        /* Centers content horizontally */
+    align-items: center;                           /* Centers content vertically */
+    min-height: 100vh;                             /* Sets minimum height to full viewport */
+    background: #333;                              /* Sets dark gray background */
 }
 
-#game-container {
-    position: relative;
+#game-container {                                  /* Styles for main game container */
+    position: relative;                            /* Enables absolute positioning of children */
 }
 
-#gameCanvas {
-    background: #fff;
+#gameCanvas {                                      /* Styles for game canvas element */
+    background: #fff;                              /* Sets white background for game area */
 }
 
-#overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.7);
+#overlay {                                         /* Styles for game message overlay */
+    position: absolute;                            /* Positions overlay relative to container */
+    top: 0;                                        /* Aligns to top of container */
+    left: 0;                                       /* Aligns to left of container */
+    width: 100%;                                   /* Takes full width of container */
+    height: 100%;                                  /* Takes full height of container */
+    display: flex;                                 /* Uses flexbox layout */
+    justify-content: center;                       /* Centers content horizontally */
+    align-items: center;                           /* Centers content vertically */
+    background: rgba(0, 0, 0, 0.7);               /* Semi-transparent black background */
 }
 
-#message {
-    color: white;
-    font-size: 24px;
-    font-family: Arial, sans-serif;
-    text-align: center;
+#message {                                         /* Styles for text messages */
+    color: white;                                  /* Sets text color to white */
+    font-size: 24px;                              /* Sets text size */
+    font-family: Arial, sans-serif;               /* Sets font family */
+    text-align: center;                           /* Centers text alignment */
 }
