@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Sets character encoding for proper text rendering -->
     <meta charset="UTF-8">
+    <!-- Ensures responsive design on various devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the page displayed in the browser tab -->
     <title>Sign Up - Gamers Benchmark</title>
+    <!-- Links the external CSS file for consistent styling -->
     <link rel="stylesheet" href="../index.css">
 </head>
 <body>
+    <!-- Navigation bar at the top of the page -->
     <div class="navbar">
+        <!-- Logo section with website name -->
         <div class="logo">
             <h2>Gamers Benchmark</h2>
         </div>
+        <!-- Navigation links for the main pages of the website -->
         <div class="nav-links">
             <a href="../index.html">Home</a>
             <a href="../leaderboard.html">Leaderboard</a>
@@ -19,26 +26,36 @@
         </div>
     </div>
 
+    <!-- Signup container for the user registration form -->
     <div class="signup-container">
+        <!-- Title for the signup form -->
         <h2>Create an Account</h2>
+        <!-- Form for user registration, submitting data via POST for security -->
         <form action="signup_handler.php" method="POST">
+            <!-- Label and input field for the username -->
             <label for="username">Username</label>
             <input type="text" id="username" name="username" required>
 
+            <!-- Label and input field for the email address -->
             <label for="email">Email</label>
             <input type="email" id="email" name="email" required>
 
+            <!-- Label and input field for the password -->
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
 
+            <!-- Label and input field to confirm the password -->
             <label for="confirm_password">Confirm Password</label>
             <input type="password" id="confirm_password" name="confirm_password" required>
 
+            <!-- Sign up button styled with the "btn" class -->
             <button type="submit" class="btn">Sign Up</button>
+            <!-- Link to login page for users who already have an account -->
             <p>Already have an account? <a href="login.html">Log in</a></p>
         </form>
     </div>
 
+    <!-- Footer section with copyright and privacy policy link -->
     <div class="footer">
         <p>&copy; 2024 Gamers Benchmark. All rights reserved. | <a href="#">Privacy Policy</a></p>
     </div>
