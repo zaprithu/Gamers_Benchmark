@@ -6,6 +6,7 @@
     align-items: center;
     height: 80vh;
     padding: 10vh;
+    margin: 10vh;
 }
 
 .game-space h1 {
@@ -53,4 +54,54 @@
 
 #est_submission:focus {
     box-shadow: 0 0 4px #333;
+}
+
+#gameboard {
+    display: grid;
+    grid-template-columns: repeat(2, 200px);
+    grid-template-rows: repeat(2, 200px);
+    padding: 25px;
+    gap: 4px;
+    margin: 20px;
+}
+
+.color {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.color.active {
+    opacity: 1;
+}
+
+.color.hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+#blue {
+    background-color: blue;
+    border-top-left-radius: 200px;
+    box-shadow: 0 0 4px blue;
+}
+
+#red {
+    background-color: red;
+    border-top-right-radius: 200px;
+    box-shadow: 0 0 4px red;
+}
+
+#green {
+    background-color: green;
+    border-bottom-left-radius: 200px;
+    box-shadow: 0 0 4px green;
+}
+
+#yellow {
+    background-color: gold;
+    border-bottom-right-radius: 200px;
+    box-shadow: 0 0 4px gold;
 }

@@ -29,6 +29,7 @@
 var submission_field = document.getElementById("est_submission");
 var submission_btn = document.getElementById("est_submit_btn");
 var results = document.getElementById("results");
+var play_btn = document.getElementById("play_btn");
 
 // WebGL canvas context
 var gl = canvas.getContext('webgl', { preserveDrawingBuffer: true });
@@ -75,8 +76,13 @@ gl.clear(gl.COLOR_BUFFER_BIT);
 // Number of objects to generate for game
 var num_objects;
 
+var timeoutID = undefined;
+
 // Function to generate objects, called on every "play" button click
 function generateObjects() {
+    play_btn.classList.remove("btn");
+    play_btn.classList.add("btn-d");
+
     // Clear the window
     gl.clear(gl.COLOR_BUFFER_BIT);
 
@@ -122,10 +128,15 @@ function generateObjects() {
       }
       
     // Call function to clear board after 10 seconds
-    setTimeout(()=>{gl.clear(gl.COLOR_BUFFER_BIT);}, 10000);
+    timeoutID = setTimeout(()=>{gl.clear(gl.COLOR_BUFFER_BIT);}, 10000);
 }
 
 function answerSubmitted() {
+    // Cancel timeout timer
+    clearTimeout(timeoutID);
+    play_btn.classList.remove("btn-d");
+    play_btn.classList.add("btn");
+
     // Disable submit button and make results visible
     submission_btn.classList.remove("btn");
     submission_btn.classList.add("btn-d");
@@ -135,14 +146,14 @@ function answerSubmitted() {
     var guess = parseInt(submission_field.value, 10);
     // Over estimation
     if (guess > num_objects) {
-        results.innerHTML = "You're guess was " + (guess - num_objects) + " over.";
+        results.innerHTML = "Your guess was " + (guess - num_objects) + " over.";
     }
     // Under estimation
     else if (guess < num_objects) {
-        results.innerHTML = "You're guess was " + (num_objects - guess) + " under."
+        results.innerHTML = "Your guess was " + (num_objects - guess) + " under."
     }
     // Correct estimation
     else {
-        results.innerHTML = "You're guess was correct!";
+        results.innerHTML = "Your guess was correct!";
     }
 }
