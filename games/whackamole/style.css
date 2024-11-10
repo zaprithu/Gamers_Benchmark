@@ -1,0 +1,468 @@
+/* style.css */
+/* Styling for Whack-A-Mole game interface */
+/* Author: Zonaid Prithu */
+/* Created: 11/04/2024 */
+/* Preconditions: None */
+/* Postconditions: Applies styles to HTML elements */
+/* Error conditions: None */
+/* Side effects: Visual changes to webpage */
+/* Invariants: None */
+/* Known faults: None */
+
+/* Reset default margins and padding */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* General page styling */
+body {
+    /* Setting default font, margin, padding, and background color for the entire page */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(58, 129, 0);
+    color: #333;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navigation bar styling */
+.navbar {
+    /* Aligning navbar contents and setting background and text colors */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+}
+
+.navbar a {
+    /* Styling navbar links */
+    text-decoration: none;
+    color: #fff;
+    margin: 0 15px;
+}
+
+.navbar a:hover {
+    /* Adding underline on hover for navbar links */
+    text-decoration: underline;
+}
+
+/* Hero section styling */
+.hero {
+    /* Centering text in hero section and setting height and background color */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    background-color: #e8e8e8;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero h1 {
+    /* Main heading font size and margin */
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    /* Subheading font size, color, and margin */
+    font-size: 20px;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+/* Button styling */
+.btn, .btn-d {
+    /* Styling shared by both enabled (.btn) and disabled (.btn-d) buttons */
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-d {
+    /* Styling for disabled button state */
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.btn:hover {
+    /* Hover effect for active buttons */
+    background-color: #555;
+}
+
+/* Game section styling */
+.games {
+    /* Aligning and wrapping game cards, with padding and gap */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 40px 20px;
+}
+
+.game-card {
+    /* Styling individual game cards, including background color, border, and shadow */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+    transition: transform 0.3s ease;
+}
+
+.game-card:hover {
+    /* Slight scale-up effect when hovering over a game card */
+    transform: scale(1.02)
+}
+
+.game-card img {
+    /* Styling game card images */
+    width: 100%;
+    border-radius: 8px;
+}
+
+.game-card h3 {
+    /* Styling game card titles */
+    font-size: 22px;
+    margin-top: 15px;
+}
+
+.game-card p {
+    /* Styling game card descriptions */
+    font-size: 16px;
+    color: #666;
+}
+
+/* Footer styling */
+.footer {
+    /* Footer padding and background color */
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+}
+
+.footer a {
+    /* Styling footer links */
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    /* Hover effect for footer links */
+    text-decoration: underline;
+}
+
+/* Login container styling */
+.login-container {
+    /* Centering, sizing, and styling the login container */
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-container h2 {
+    /* Login header styling */
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.login-container label {
+    /* Styling for login labels */
+    display: block;
+    font-size: 18px;
+    color: #666;
+    margin: 15px 0 5px;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    /* Styling login input fields */
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.login-container input[type="text"]:focus,
+.login-container input[type="password"]:focus {
+    /* Styling focused state for input fields */
+    border-color: #333;
+    outline: none;
+}
+
+.login-container .btn {
+    /* Login button styling */
+    width: 100%;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.login-container p {
+    /* Paragraph styling in login container */
+    margin-top: 15px;
+    font-size: 16px;
+    color: #666;
+}
+
+.login-container a {
+    /* Styling for links in login container */
+    color: #333;
+    text-decoration: none;
+}
+
+.login-container a:hover {
+    /* Hover effect for links in login container */
+    text-decoration: underline;
+}
+
+.signup-container {
+    /* Centering, sizing, and styling the signup container */
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.signup-container h2 {
+    /* Signup header styling */
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.signup-container label {
+    /* Styling for signup labels */
+    display: block;
+    font-size: 18px;
+    color: #666;
+    margin: 15px 0 5px;
+}
+
+.signup-container input[type="text"],
+.signup-container input[type="email"],
+.signup-container input[type="password"] {
+    /* Styling signup input fields */
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.signup-container input[type="text"]:focus,
+.signup-container input[type="email"]:focus,
+.signup-container input[type="password"]:focus {
+    /* Styling focused state for signup input fields */
+    border-color: #333;
+    outline: none;
+}
+
+.signup-container .btn {
+    /* Signup button styling */
+    width: 100%;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.signup-container p {
+    /* Paragraph styling in signup container */
+    margin-top: 15px;
+    font-size: 16px;
+    color: #666;
+}
+
+.signup-container a {
+    /* Styling for links in signup container */
+    color: #333;
+    text-decoration: none;
+}
+
+.signup-container a:hover {
+    /* Hover effect for links in signup container */
+    text-decoration: underline;
+}
+
+/* Reset default margins and padding */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Game-specific styling starts here */
+
+/* Whack-a-Mole Game container */
+.game {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(58, 129, 0);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    bottom: 0%;
+}
+
+/* Score display styling */
+.score {
+    font-size: 4em;
+    margin-bottom: 0.5em;
+}
+
+/* Game board setup: 3x3 grid with holes */
+.board {
+    height: 400px;
+    width: 400px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    grid-template-rows: repeat(3, 1fr);    /* 3 rows */
+    gap: 40px; /* Space between holes */
+}
+
+/* Hole styling */
+.hole {
+    background-color: rgb(165, 85, 11); /* Brown color for dirt */
+    border-radius: 50%; /* Circular hole */
+    box-shadow: inset 0 10px 0 7px rgb(53, 21, 6),
+                inset 0 20px 20px 15px rgba(0, 0, 0, 0.3),
+                0 0 5px rgba(0, 0, 0, 0.5); /* Shadow effects */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Mole image styling within the hole */
+.hole .mole {
+    width: 90%; /* Mole fills most of the hole */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    animation: rise 0.3s ease-out; /* Smooth rising effect */
+}
+
+/* Cursor styling (hammer icon) */
+.game .cursor {
+    height: 75px;
+    width: 75px;
+    position: absolute;
+    top: 75px;
+    left: 75px;
+    background-image: url('assets/hammer.png');
+    background-size: 100% 100%;
+    transform: translate(-20%, -20%);
+    transition: transform 0.1s; /* Quick transition for hammer movement */
+    pointer-events: none;
+}
+
+/* Cursor animation when active (on click) */
+.cursor.active {
+    transform: translate(-20%, -20%) rotate(-45deg); /* Rotates hammer */
+}
+
+/* Button and timer styling */
+.start-button, .timer {
+    font-size: 2em;
+    margin: 20px;
+}
+
+/* Start button styling */
+.start-button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Timer display styling */
+.timer {
+    display: block;
+    font-size: 2em;
+}
+
+/* End screen styling */
+.end-screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.end-screen h2 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.end-screen p {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+/* Play Again button styling */
+.play-again-button {
+    font-size: 1.5em;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Bomb styling within a hole */
+.hole .bomb {
+    width: 100%; /* Slightly smaller than the mole */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    animation: rise 0.3s ease-out; /* Bomb rises similarly to the mole */
+}
+
+/* Animation for mole and bomb to rise from the hole */
+@keyframes rise {
+    0% {
+        transform: translateX(-50%) translateY(100%);
+    }
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Bomb explosion effect on click */
+.hole .bomb.clicked {
+    animation: explode 0.2s ease-out;
+}
+
+/* Explosion animation keyframes */
+@keyframes explode {
+    0% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.2); }
+    100% { transform: translateX(-50%) scale(0); }
+}

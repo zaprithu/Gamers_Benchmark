@@ -1,0 +1,76 @@
+<!--
+  Estimate Game
+  HTML Page for the game
+  Made by: Zonaid Prithu
+
+  Created 11/4/2024
+  Edited 11/10/2024:
+      Added comments
+  Preconditions:
+      Player must press the "Start Game" button in order to play the game
+  Postconditions:
+      The final score from the player's game is displayed.
+  Errors/exceptions:
+      None
+  Side effects:
+      None
+  Invariants:
+      None
+  Known faults:
+      None
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Whack-a-Mole</title>
+</head>
+<body>
+        <!-- Navigation Bar -->
+    <div class="navbar">
+        <div class="logo">
+            <h2>Gamers Benchmark</h2>
+        </div>
+        <div class="nav-links">
+        <a href="../../index.html">Home</a>
+        <a href="../../leaderboard.html">Leaderboard</a>
+        <a href="../../about/about.html">About</a>
+        <a href="../../log-signup/login.html">Login/Signup</a>
+        </div>
+    </div>
+    <!-- Whack-A-Mole Game -->
+    <div class="game">
+        <h1 class="score">SCORE: <span>00</span></h1>
+        <div class="timer">TIME: <span>60</span>s</div>
+        <button class="start-button">Start Game</button>
+        
+        <div class="board">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+        </div>
+
+        <div class="end-screen">
+            <h2>Game Over!</h2>
+            <p>Your Score: <span class="final-score">0</span></p>
+            <button class="play-again-button">Play Again</button>
+        </div>
+
+        <!-- Sets Cursor to be a Hammer -->
+        <div class="cursor"></div>
+
+        <!-- Script to Run Game -->
+        <script src="main.js"></script>
+    </div>
+</body>
+</html>
