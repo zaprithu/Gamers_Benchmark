@@ -4,8 +4,20 @@
     Made by: Ethan Dirkes
 
     Created 11/9/2024
-    Tweaks needed:
-        - Add comments
+    Edited 11/10/2024 (Ethan):
+        - Added comments
+    Preconditions:
+        Only inputs are mouse clicks on the color buttons
+    Postconditions:
+        Final score of the game
+    Errors:
+        None
+    Side effects:
+        None
+    Invariants:
+        None
+    Known faults:
+        None
 -->
 
 <!DOCTYPE html>
@@ -47,15 +59,19 @@
         <!-- Play button-->
         <button class="btn" id="start">Play</button>
 
+        <!-- Game board -->
         <div id="gameboard">
+            <!-- Color buttons for game -->
             <div class="color" id="blue"></div>
             <div class="color" id="red"></div>
             <div class="color" id="green"></div>
             <div class="color" id="yellow"></div>
         </div>
 
+        <!-- Display results -->
         <p id="results"></p>
 
+        <!-- JS file that runs game logic -->
         <script src="sequence.js"></script>
 
     </div>

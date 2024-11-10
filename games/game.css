@@ -79,6 +79,7 @@
 
 .color.hover {
     opacity: 0.8;
+    cursor: pointer;
 }
 
 #blue {
@@ -90,17 +91,17 @@
 #red {
     background-color: red;
     border-top-right-radius: 200px;
-    box-shadow: 0 0 4px red
+    box-shadow: 0 0 4px red;
 }
 
 #green {
     background-color: green;
     border-bottom-left-radius: 200px;
-    box-shadow: 0 0 4px green
+    box-shadow: 0 0 4px green;
 }
 
 #yellow {
     background-color: gold;
     border-bottom-right-radius: 200px;
-    box-shadow: 0 0 4px gold
+    box-shadow: 0 0 4px gold;
 }
