@@ -47,6 +47,7 @@
   </div>
 
   <div class="game-space">
+
     <!-- Header and description for game -->
     <h1>Estimate Number of Objects</h1>
     <p>
@@ -56,7 +57,7 @@
     </p>
     
     <!-- Play button-->
-    <button class="btn" onclick="generateObjects()">Play</button>
+    <button id="play_btn" class="btn" onclick="generateObjects()">Play</button>
     
     <!-- Display game -->
     <canvas id="canvas" class="game-window" width=400 height=400></canvas>
@@ -76,6 +77,11 @@
     <!-- Script to run the game -->
     <script src="./estimate_game.js"></script>
   </div>
+
+  <!-- div for spacing, probably better formatting available,
+        this was just a quick solution i needed 
+  -->
+  <div style="height: 10vh"></div>
 
   <!-- Footer -->
   <div class="footer">
