@@ -1,0 +1,62 @@
+/* baggle.css */
+/* Styling for Baggle game interface */
+/* Author: Christopher Gronewold */
+/* Created: 11/10/2024 */
+/* Preconditions: None */
+/* Postconditions: Applies styles to HTML elements */
+/* Error conditions: None */
+/* Side effects: Visual changes to webpage */
+/* Invariants: None */
+/* Known faults: None */
+
+body { /* Styles for the body element */
+    font-family: Arial, sans-serif; /* Sets the font family */
+    display: flex; /* Uses flexbox for layout */
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    height: 100vh; /* Sets the height to 100% of the viewport height */
+    margin: 0; /* Removes default margin */
+    background-color: #f0f0f0; /* Sets the background color */
+} /* Closes the body styles */
+
+.container { /* Styles for the container class */
+    text-align: center; /* Centers the text within the container */
+} /* Closes the container styles */
+
+#board { /* Styles for the board element */
+    display: grid; /* Uses grid for layout */
+    grid-template-columns: repeat(4, 1fr); /* Creates 4 equal columns */
+    gap: 5px; /* Sets the gap between grid items */
+    margin: 20px 0; /* Sets top and bottom margin */
+} /* Closes the board styles */
+
+.letter { /* Styles for the letter class */
+    width: 50px; /* Sets the width of each letter box */
+    height: 50px; /* Sets the height of each letter box */
+    background-color: #fff; /* Sets the background color */
+    border: 1px solid #000; /* Adds a border */
+    display: flex; /* Uses flexbox for layout */
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    font-size: 24px; /* Sets the font size */
+    font-weight: bold; /* Sets the font weight */
+} /* Closes the letter styles */
+
+#word-input { /* Styles for the word input element */
+    margin-right: 10px; /* Adds right margin */
+    padding: 5px; /* Adds padding */
+} /* Closes the word input styles */
+
+#submit-word { /* Styles for the submit word button */
+    padding: 5px 10px; /* Adds padding */
+} /* Closes the submit word button styles */
+
+#score, #timer { /* Styles for the score and timer elements */
+    margin-top: 10px; /* Adds top margin */
+    font-weight: bold; /* Sets the font weight */
+} /* Closes the score and timer styles */
+
+#word-list { /* Styles for the word list element */
+    margin-top: 20px; /* Adds top margin */
+    text-align: left; /* Aligns text to the left */
+} /* Closes the word list styles */
