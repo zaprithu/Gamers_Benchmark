@@ -1,0 +1,78 @@
+<!--
+    Spot the Object
+    HTML file for spot the object game page
+    Made by: Tommy Lam
+
+    Created 11/9/2024
+    Edited 11/10/2024 (Tommy):
+        - Added comments
+    Preconditions:
+        Only inputs are mouse clicks on game objects
+    Postconditions:
+        Final score of the game
+    Errors:
+        None
+    Side effects:
+        None
+    Invariants:
+        None
+    Known faults:
+        None
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Page information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spot the Object Game</title>
+
+    <!-- Link necessary stylesheets -->
+    <link rel="stylesheet" type="text/css" href="../../index.css">
+    <link rel="stylesheet" type="text/css" href="../game.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <div class="logo">
+            <h2>Gamers Benchmark</h2>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../leaderboard.html">Leaderboard</a>
+            <a href="../../../website/about/about.html">About</a>
+            <a href="../../../website/log-signup/login.html">Login/Signup</a>
+        </div>
+    </div>
+
+    <div class="game-space">
+        <!-- Header and description for game -->
+        <h1>Spot the Object Game</h1>
+        <p>
+            Welcome to Spot the Object! Test your visual perception and speed.
+            When you click 'Play', you'll be shown an object to find among similar distractors.
+            Click on the matching object as quickly as you can - your time will be recorded!
+            Try to beat your best time with each attempt.
+        </p>
+
+        <!-- JS file that runs game logic -->
+        <script src="./spot.js"></script>
+        <div class="controls">
+            <!-- Play button-->
+            <button class="btn" id="start">Play</button>
+        </div>
+
+        <div class="hint-container" id="hint-container"></div>
+        <div class="game-canvas" id="game-canvas"></div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 Gamers Benchmark. All rights reserved. | <a href="#">Privacy Policy</a></p>
+    </div>
+</body>
+
+</html>
