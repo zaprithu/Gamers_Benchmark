@@ -1,0 +1,28 @@
+/* bullet_hell.css */
+/* Styling for Bullet Hell game interface */
+/* Author: Christopher Gronewold */
+/* Created: 11/10/2024 */
+/* Preconditions: None */
+/* Postconditions: Applies styles to HTML elements */
+/* Error conditions: None */
+/* Side effects: Visual changes to webpage */
+/* Invariants: None */
+/* Known faults: None */
+body {
+    margin: 0; /* Remove default margin */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full viewport height */
+    background-color: #000; /* Black background */
+}
+
+#gameCanvas {
+    border: 1px solid #fff; /* White border around canvas */
+}
+
+#startButton {
+    position: absolute; /* Position button absolutely */
+    font-size: 24px; /* Set font size */
+    padding: 10px 20px; /* Add padding */
+}
