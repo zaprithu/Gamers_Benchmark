@@ -1,0 +1,167 @@
+.game-space {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    height: 80vh;
+    padding: 10vh;
+    margin: 10vh;
+}
+
+.game-space h1 {
+    font-size: 48px;
+    margin-bottom: 0;
+    width: 75%;
+}
+
+.game-space p {
+    font-size: 16px;
+    margin-top: 0;
+    width: 60%;
+    color: #666;
+}
+
+.game-window {
+    border: none;
+    border-radius: 8px;
+    margin: 16px;
+}
+
+#results {
+    font-size: 16px;
+    color: #666;
+    visibility: hidden;
+}
+
+#est_submit_btn {
+    visibility: hidden;
+    padding: 4px 12px;
+    font-size: 16px;
+}
+
+#est_submission {
+    visibility: hidden;
+    border: none;
+    border-color: #fff;
+    height: 32px;
+    font-size: 16px;
+    color: #666;
+    border-radius: 8px;
+    box-shadow: 0 0 2px #333;
+    transition: box-shadow 0.1s;
+}
+
+#est_submission:focus {
+    box-shadow: 0 0 4px #333;
+}
+
+#gameboard {
+    display: grid;
+    grid-template-columns: repeat(2, 200px);
+    grid-template-rows: repeat(2, 200px);
+    padding: 25px;
+    gap: 4px;
+    margin: 20px;
+}
+
+.color {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.color.active {
+    opacity: 1;
+}
+
+.color.hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+#blue {
+    background-color: blue;
+    border-top-left-radius: 200px;
+    box-shadow: 0 0 4px blue;
+}
+
+#red {
+    background-color: red;
+    border-top-right-radius: 200px;
+    box-shadow: 0 0 4px red;
+}
+
+#green {
+    background-color: green;
+    border-bottom-left-radius: 200px;
+    box-shadow: 0 0 4px green;
+}
+
+#yellow {
+    background-color: gold;
+    border-bottom-right-radius: 200px;
+    box-shadow: 0 0 4px gold;
+}
+
+/* Additional styles needed for Spot the Object game */
+.game-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+.game-canvas {
+    width: 100%;
+    max-width: 1200px;
+    height: 800px;
+    background-color: #f0f0f0;
+    position: relative;
+    overflow: hidden;
+    margin: 20px auto;
+    border: 2px solid #333;
+    border-radius: 8px;
+    display: none;
+}
+
+.hint-container {
+    position: flex;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-top: 1px solid #ddd;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+    z-index: 5;
+}
+
+.game-object {
+    position: absolute;
+    cursor: pointer;
+    transition: transform 0.2s;
+    z-index: 1;
+}
+
+.game-object:hover {
+    transform: scale(1.1);
+    z-index: 2;
+}
+
+.result-display {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 80%;
+    max-width: 400px;
+}

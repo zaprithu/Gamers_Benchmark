@@ -1,10 +1,13 @@
 <!--
-- Name of code artifact: signin.html
+- Name of code artifact: signup.php
 - Brief description of what the code does: This HTML file lays out a page wherein users are able to sign up for an account on the Gamers Benchmark website,
-allowing them to savee their scores and participate in the leaderboards if they do not already have an account. In case they do have an account, this allows them
+allowing them to save their scores and participate in the leaderboards if they do not already have an account. In case they do have an account, this allows them
 to navigate back to the login page.
 - Programmer’s name: Tommy Lam, Ethan Dirkes, Chase Entwistle, Christopher Gronewold, Zonaid Prithu
 - Date the code was created: Oct 27, 2024.
+- Dates the code was revised:
+    • Brief description of each revision & author:
+        • Zonaid Prithu - November 24, 2024: Added login-signin session and database functionality
 - Preconditions:
 • Acceptable Input:
     • Users must access this page using a compatible web browser that supports HTML5, CSS, and JavaScript.
@@ -27,40 +30,54 @@ to navigate back to the login page.
 - Any known faults:
 • Currently, some game buttons are disabled (btn-d class) and are placeholders until their pages are created.
 -->
+<?php
+session_start();
+
+// Check if the user is logged in
+$isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'];
+
+// Access the username stored in the session, with a fallback
+$username = $isLoggedIn ? $_SESSION['username'] : null;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Sets character encoding for proper text rendering -->
+    <!-- Basic HTML metadata for page setup -->
     <meta charset="UTF-8">
-    <!-- Ensures responsive design on various devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Title of the page displayed in the browser tab -->
-    <title>Sign Up - Gamers Benchmark</title>
-    <!-- Links the external CSS file for consistent styling -->
-    <link rel="stylesheet" href="../../index.css">
+    <title>Gamers Benchmark</title>
+    <link rel="stylesheet" type="text/css" href="../../index.css"> <!-- Link to external CSS file for styling -->
 </head>
 <body>
-    <!-- Navigation bar at the top of the page -->
+
+    <!-- Navigation Bar -->
     <div class="navbar">
-        <!-- Logo section with website name -->
+        <!-- Site logo/title -->
         <div class="logo">
             <h2>Gamers Benchmark</h2>
         </div>
-        <!-- Navigation links for the main pages of the website -->
+        <!-- Navigation links to various sections/pages -->
         <div class="nav-links">
             <a href="../../index.html">Home</a>
-            <a href="../leaderboard.html">Leaderboard</a>
-            <a href="../about/about.html">About</a>
-            <a href="login.html">Login</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="../about/about.php">About</a>
+            <!-- Show logout and profile buttons only if logged in -->
+            <?php if ($isLoggedIn): ?>
+                <a href="handlers/logout.php" class="btn">Sign Out</a>
+                <a href="profile.php" class="btn">Profile (<?php echo htmlspecialchars((string)$username); ?>)</a>
+            <?php else: ?>
+                <!-- Show Login button if not logged in -->
+                <a href="login.html" class="btn">Login</a>
+            <?php endif; ?>
         </div>
     </div>
-
     <!-- Signup container for the user registration form -->
     <div class="signup-container">
         <!-- Title for the signup form -->
         <h2>Create an Account</h2>
         <!-- Form for user registration, submitting data via POST for security -->
-        <form action="signup_handler.php" method="POST">
+        <form action="handlers/signup_handler.php" method="POST">
             <!-- Label and input field for the username -->
             <label for="username">Username</label>
             <input type="text" id="username" name="username" required>

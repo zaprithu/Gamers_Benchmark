@@ -4,6 +4,9 @@
 can also navigate between pages
 - Programmer’s name: Tommy Lam, Ethan Dirkes, Chase Entwistle, Christopher Gronewold, Zonaid Prithu
 - Date the code was created: Oct 27, 2024.
+- Dates the code was revised:
+    • Brief description of each revision & author:
+        • Zonaid Prithu - November 24, 2024: Added login-signin session and database functionality
 - Preconditions:
 • Acceptable Input:
     • Users must access this page using a compatible web browser that supports HTML5, CSS, and JavaScript.
@@ -26,31 +29,46 @@ can also navigate between pages
 - Any known faults:
 • Currently, some game buttons are disabled (btn-d class) and are placeholders until their pages are created.
 -->
+<?php
+session_start();
+
+// Check if the user is logged in
+$isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'];
+
+// Access the username stored in the session, with a fallback
+$username = $isLoggedIn ? $_SESSION['username'] : null;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Character encoding declaration for proper text rendering -->
+    <!-- Basic HTML metadata for page setup -->
     <meta charset="UTF-8">
-    <!-- Viewport settings for responsive design on various devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gamers Benchmark</title>
-    <!-- Link to external CSS file for styling -->
-    <link rel="stylesheet" type="text/css" href="../../index.css">
+    <link rel="stylesheet" type="text/css" href="../../index.css"> <!-- Link to external CSS file for styling -->
 </head>
 <body>
 
     <!-- Navigation Bar -->
     <div class="navbar">
-        <!-- Logo section for the website branding -->
+        <!-- Site logo/title -->
         <div class="logo">
             <h2>Gamers Benchmark</h2>
         </div>
-        <!-- Navigation links for site pages -->
+        <!-- Navigation links to various sections/pages -->
         <div class="nav-links">
-            <a href="../../index.html">Home</a>
-            <a href="../leaderboard.html">Leaderboard</a>
-            <a href="about.html">About</a>
-            <a href="../log-signup/login.html">Login/Signup</a>
+            <a href="../../index.php">Home</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <!-- Show logout and profile buttons only if logged in -->
+            <?php if ($isLoggedIn): ?>
+                <a href="../log-signup/logout.php" class="btn">Sign Out</a>
+                <a href="profile.php" class="btn">Profile (<?php echo htmlspecialchars((string)$username); ?>)</a>
+            <?php else: ?>
+                <!-- Show Login and Sign Up buttons if not logged in -->
+                <a href="../log-signup/login.html" class="btn">Login</a>
+                <a href="../log-signup/signup.php" class="btn">Sign Up</a>
+            <?php endif; ?>
         </div>
     </div>
 

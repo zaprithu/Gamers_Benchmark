@@ -4,6 +4,9 @@
 between games and so that they are able to pparticipate in the leaderboards. They are also able to navigate to the sign up page if they do not already have an account
 - Programmer’s name: Tommy Lam, Ethan Dirkes, Chase Entwistle, Christopher Gronewold, Zonaid Prithu
 - Date the code was created: Oct 27, 2024.
+- Dates the code was revised:
+    • Brief description of each revision & author:
+        • Zonaid Prithu - November 24, 2024: Removed Login Button
 - Preconditions:
 • Acceptable Input:
     • Users must access this page using a compatible web browser that supports HTML5, CSS, and JavaScript.
@@ -47,10 +50,10 @@ between games and so that they are able to pparticipate in the leaderboards. The
         </div>
         <!-- Navigation links to main sections of the website -->
         <div class="nav-links">
-            <a href="../../index.html">Home</a>
+            <a href="../../index.php">Home</a>
             <a href="../leaderboard.html">Leaderboard</a>
-            <a href="../about/about.html">About</a>
-            <a href="login.html">Login</a>
+            <a href="../about/about.php">About</a>
+            <a href="signup.php">Sign Up</a>
         </div>
     </div>
 
@@ -59,7 +62,7 @@ between games and so that they are able to pparticipate in the leaderboards. The
         <!-- Title for the login form -->
         <h2>Login</h2>
         <!-- Form for user login with POST method for secure data submission -->
-        <form action="login_handler.php" method="POST">
+        <form action="handlers/login_handler.php" method="POST">
             <!-- Label and input field for the username -->
             <label for="username">Username</label>
             <input type="text" id="username" name="username" required>
@@ -71,7 +74,7 @@ between games and so that they are able to pparticipate in the leaderboards. The
             <!-- Login button styled with the class "btn" -->
             <button type="submit" class="btn">Login</button>
             <!-- Link to the signup page for users without an account -->
-            <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+            <p>Don't have an account? <a href="signup.php">Sign up</a></p>
         </form>
     </div>
 
