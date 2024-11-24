@@ -54,7 +54,7 @@ try {
         exit;
     } else {
         // Invalid credentials
-        echo "<script>alert('Invalid username or password.'); window.location.href='../login.php';</script>";
+        echo "<script>alert('Invalid username or password.'); window.location.href='../login.html';</script>";
         exit;
     }
 } catch (PDOException $e) {
