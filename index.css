@@ -10,6 +10,7 @@
         • Ethan - Oct 26, 2024: Seperate style from index.html
         • Zonaid - Oct 27, 2024: Add styling for about.html, login.html and signup.html
         • Tommy Lam - Oct 27, 2024: Add prologue comment
+        • Tommy Lam - Nov 24, 2024: Add styling for leaderboard.html 
 - Preconditions:
 • Acceptable Input:
     • Applied to HTML elements with specific classes and IDs defined in the linked HTML files.
@@ -323,4 +324,174 @@ body {
 .signup-container a:hover {
     /* Hover effect for links in signup container */
     text-decoration: underline;
+}
+
+/* Leaderboard Container Layout */
+.leaderboard-container {
+    display: flex;
+    min-height: calc(100vh - 120px); /* Adjust based on your navbar and footer height */
+    background-color: #f4f4f4;
+}
+
+/* Category Sidebar Styles */
+.category-sidebar {
+    width: 250px;
+    background-color: #333;
+    padding: 20px;
+}
+
+.category-sidebar h2 {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #555;
+}
+
+.category-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.category-item {
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.category-item:hover {
+    background-color: #444;
+}
+
+.category-item.active {
+    background-color: #555;
+    font-weight: bold;
+}
+
+/* Main Leaderboard Area */
+.leaderboard-main {
+    flex: 1;
+    padding: 30px;
+    background-color: #fff;
+}
+
+.leaderboard-header {
+    margin-bottom: 30px;
+}
+
+.leaderboard-header h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.game-info {
+    color: #666;
+    font-size: 18px;
+}
+
+.game-info .divider {
+    margin: 0 10px;
+    color: #ccc;
+}
+
+/* Leaderboard Table Styles */
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.leaderboard-table th {
+    background-color: #f8f8f8;
+    padding: 15px;
+    text-align: left;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+}
+
+.leaderboard-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.rank-col {
+    width: 80px;
+}
+
+.name-col {
+    width: 30%;
+}
+
+.score-col, .time-col {
+    width: 120px;
+}
+
+.date-col {
+    width: 150px;
+}
+
+/* Player Info Styling */
+.player-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.player-name {
+    font-weight: 500;
+}
+
+.player-country {
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Rank Styling */
+.rank {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: #f4f4f4;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .category-sidebar {
+        width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .leaderboard-container {
+        flex-direction: column;
+    }
+    
+    .category-sidebar {
+        width: 100%;
+        order: 1;
+    }
+    
+    .leaderboard-main {
+        order: 2;
+    }
+    
+    .category-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    
+    .category-item {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
 }
