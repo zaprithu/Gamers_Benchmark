@@ -42,7 +42,7 @@ $username = $isLoggedIn ? $_SESSION['username'] : null; // Retrieve the logged-i
 
 // Attempt to connect to the SQLite database
 try { 
-    $db = new PDO('sqlite:../highscores.db'); // Connect to the SQLite database for retrieving leaderboard data
+    $db = new PDO('sqlite:../log-signup/highscores.db'); // Connect to the SQLite database for retrieving leaderboard data
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Set error handling to throw exceptions
 } catch (PDOException $e) { 
     die("Database connection failed: " . $e->getMessage()); // Display an error message and terminate the script if connection fails
@@ -102,7 +102,7 @@ $currentGame = $_GET['game'] ?? 'Maze Navigation';
 // Retrieve the leaderboard data for the current game
 $leaderboardData = getLeaderboardData($currentGame); // Fetch the top 10 scores for the selected game
 $playerCount = getPlayerCount($currentGame); // Fetch the total unique players for the selected game
-?> // End of PHP code
+?>
 
 
 <!DOCTYPE html> <!-- Specifies the HTML document type -->
@@ -173,8 +173,8 @@ $playerCount = getPlayerCount($currentGame); // Fetch the total unique players f
                 <table class="leaderboard-table"> <!-- Leaderboard table -->
                     <thead> <!-- Table header -->
                         <tr> <!-- Table header row -->
-                            <th>Rank</th> <!-- Column for rank -->
-                            <th>Name</th> <!-- Column for player name -->
+                            <th>Rank/Name</th> <!-- Column for rank & player name -->
+
                             <th>Score</th> <!-- Column for player score -->
                             <th>Date</th> <!-- Column for date -->
                         </tr>
@@ -190,7 +190,7 @@ $playerCount = getPlayerCount($currentGame); // Fetch the total unique players f
                                     <td class="rank"><?php echo htmlspecialchars($row['rank']); ?></td> <!-- Player rank -->
                                     <td class="player-info">
                                         <span class="player-name">
-                                            <a href="profile.php?username=<?php echo urlencode($row['username']); ?>&game=<?php echo urlencode(getDbGameName($currentGame)); ?>">
+                                            <a href="../../profile.php?username=<?php echo urlencode($row['username']); ?>&game=<?php echo urlencode(getDbGameName($currentGame)); ?>">
                                                 <?php echo htmlspecialchars($row['username']); ?>
                                             </a> <!-- Link to the player's profile -->
                                         </span>
