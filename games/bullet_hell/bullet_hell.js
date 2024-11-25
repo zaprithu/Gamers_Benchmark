@@ -336,6 +336,13 @@ function endGame() {
     ctx.fillText(`You survived for ${survivalTime} seconds`, canvas.width / 2, canvas.height / 3 + 50); // Draw survival time text
 
     startButton.style.display = 'block'; // Show start button
+    fetch('../../add_score.php', {
+        method: 'POST',
+        body: new URLSearchParams({
+            game: 'bullet_hell',
+            score: survivalTime
+        })
+    });
 }
 
 startButton.addEventListener('click', startGame); // Add click event listener to start button

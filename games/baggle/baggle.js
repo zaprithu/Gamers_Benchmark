@@ -128,6 +128,13 @@ function endGame() { // Defines the endGame function
     wordInput.disabled = true; // Disables the word input
     
     const playAgain = confirm(`Game Over! Your score: ${score}`); // Shows a game over message and asks to play again
+    fetch('../../add_score.php', { // publish score to database
+        method: 'POST',
+        body: new URLSearchParams({
+            game: 'baggle',
+            score: score
+        })
+    });
     if (playAgain) { // If the user wants to play again
         startGame(); // Starts a new game
     }

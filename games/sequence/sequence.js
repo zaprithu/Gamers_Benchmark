@@ -176,4 +176,11 @@ function gameOver() {
     // Enable play button
     START_BUTTON.classList.remove('btn-d');
     START_BUTTON.classList.add('btn');
+    fetch('../../add_score.php', { // publish score to database
+        method: 'POST',
+        body: new URLSearchParams({
+            game: 'sequence',
+            score: level - 1
+        })
+    });
 }

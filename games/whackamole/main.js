@@ -61,6 +61,13 @@ function endGame() {
     endScreen.style.display = 'flex' // Show the end screen
     finalScoreEl.textContent = score  // Display the final score
     startButton.style.display = 'none' // Keep start button hidden
+    fetch('../../add_score.php', { // publish score to database
+        method: 'POST',
+        body: new URLSearchParams({
+            game: 'whackamole',
+            score: score
+        })
+    });
 }
 
 // Main game loop: spawns a mole, with a chance to spawn a bomb in a different hole

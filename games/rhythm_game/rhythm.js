@@ -68,7 +68,7 @@ async function endGame() {
     notes = [];
     if (score <= 0) return;
     console.log(score);
-    await fetch('../../add_score.php', {
+    fetch('../../add_score.php', {
         method: 'POST',
         body: new URLSearchParams({
             game: 'rhythm_game',

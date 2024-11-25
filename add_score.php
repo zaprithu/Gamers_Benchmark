@@ -1,3 +1,23 @@
+<!--
+- Name of code artifact: add_score.php
+- Brief description of what the code does: This php file allows programmatic access for games to add scores to the scores table of the database. In javascript code, a fetch is made to this page which sends a POST request containing the score and the game that is being played.
+- Programmer’s name: Chase Entwistle
+- Date the code was created: Nov 27, 2024.
+- Preconditions:
+• Acceptable Input:
+    • The sender of the request should send a POST request containing JSON data
+    • The JSON should contain both a "game" key and a "score" key
+    • The "score" key should be the name of the game, ie. one of the folder names within the "games" folder
+    • The "game" key should be numeric
+    • The user sending should be logged in
+• Database:
+    • The highscores.db file exists, and the scores table is correctly set up
+- Postconditions:
+    • The scores table of the database is updated with the new score, if it is the player's personal best in that game.
+• Return Values or Types:
+    • The columns added to the table are "username", "game", "score", and "date"
+    • The date column will be in the format YYYY-MM-DD XX:XX:XX
+-->
 <?php
 session_start(); // Start the session for accessing session variables
 
@@ -27,18 +47,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Determine if the game uses "lower is better" scoring
-    $lowerIsBetterGames = ['maze_game', 'spot']; // Add games where lower scores are better
-    $lowerIsBetter = in_array($game, $lowerIsBetterGames);
+    ; // Add games where lower scores are better
+    $lowerIsBetter = in_array($game, ['maze_game', 'spot', 'estimate']);
 
     // Check if this score is a personal best
     $query = "
-        SELECT MAX(score) AS max_score 
-        FROM scores 
+        SELECT " . ($lowerIsBetter ? "MIN(score)" : "MAX(score)") . " AS best_score
+        FROM scores
         WHERE username = :username AND game = :game";
     $stmt = $db->prepare($query);
     $stmt->execute([':username' => $username, ':game' => $game]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
 
     $currentBest = $result['best_score'] ?? ($lowerIsBetter ? PHP_FLOAT_MAX : PHP_FLOAT_MIN);
 

@@ -144,16 +144,27 @@ function answerSubmitted() {
 
     // Read int from guess and display accuracy
     var guess = parseInt(submission_field.value, 10);
+    var score;
     // Over estimation
     if (guess > num_objects) {
-        results.innerHTML = "Your guess was " + (guess - num_objects) + " over.";
+        score = guess - num_objects;
+        results.innerHTML = "Your guess was " + score + " over.";
     }
     // Under estimation
     else if (guess < num_objects) {
-        results.innerHTML = "Your guess was " + (num_objects - guess) + " under."
+        score = num_objects - guess
+        results.innerHTML = "Your guess was " + score + " under."
     }
     // Correct estimation
     else {
+        score = 0
         results.innerHTML = "Your guess was correct!";
     }
+    fetch('../../add_score.php', { // publish score to database
+        method: 'POST',
+        body: new URLSearchParams({
+            game: 'estimate',
+            score: score
+        })
+    });
 }

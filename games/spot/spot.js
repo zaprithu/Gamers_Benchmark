@@ -141,7 +141,7 @@ class SpotGame {
     handleGameEnd() {
         // Calculate time taken to find object
         const endTime = (Date.now() - this.startTime) / 1000;
-        
+
         // Create and display results
         const resultDisplay = document.createElement('div');
         resultDisplay.className = 'result-display';
@@ -154,6 +154,14 @@ class SpotGame {
         // Clear canvas and show results
         this.gameCanvas.innerHTML = '';
         this.gameCanvas.appendChild(resultDisplay);
+
+        fetch('../../add_score.php', {
+            method: 'POST',
+            body: new URLSearchParams({
+                game: 'spot',
+                score: endTime
+            })
+        });
     }
 
     // Initialize and start a new game

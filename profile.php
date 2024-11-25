@@ -1,3 +1,19 @@
+<!--
+- Name of code artifact: signup_handler.php
+- Brief description of what the code does: This php file shows the player their scores over time, visually, by querying the scores table of the database.
+- Programmer’s name: Chase Entwistle
+- Date the code was created: Nov 24, 2024.
+- Preconditions:
+• Acceptable Input:
+    • Users must access this page using a compatible web browser that supports PHP
+• Database:
+    • The highscores.db file exists, and the scores table is correctly set up
+- Postconditions:
+• Return Values or Types:
+    • Shows the player a graph of their previous best scores over time
+    • A text form allows the user to view other player's graphs
+    • Buttons for changing which game
+-->
 <?php
 session_start();
 // Connect to the SQLite database
@@ -7,6 +23,9 @@ try {
 } catch (PDOException $e) {
     die("Database connection failed: " . $e->getMessage());
 }
+
+// Get selected game from the query parameter
+$selectedGame = $_GET['game'] ?? 'baggle';
 
 // Fetch personal best scores for the selected game
 
@@ -25,12 +44,9 @@ else {
     }
 
     // Redirect to the same page with the username in the URL
-    header("Location: " . $_SERVER['PHP_SELF'] . "?username=" . urlencode($username) . "&game=" . urlencode($_GET['game']));
+    header("Location: " . $_SERVER['PHP_SELF'] . "?username=" . urlencode($username) . "&game=" . urlencode($selectedGame));
     exit;
 }
-
-// Get selected game from the query parameter
-$selectedGame = $_GET['game'] ?? 'baggle';
 
 $query = "
     SELECT score, date 
@@ -54,6 +70,7 @@ $scores = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" type="text/css" href="index.css"> <!-- Link to external CSS file for styling -->
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
 </head>
 <body>
 
@@ -65,13 +82,21 @@ $scores = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <!-- Navigation links to various sections/pages -->
         <div class="nav-links">
-            <a href="index.html">Home</a>
+            <a href="index.php">Home</a>
             <a href="leaderboard.html">Leaderboard</a>
-            <a href="website/about/about.html">About</a>
-            <a href="website/log-signup/login.html">Login/Signup</a>
+            <a href="website/about/about.php">About</a>
+            <!-- Show logout and profile buttons only if logged in -->
+            <?php if ($isLoggedIn): ?>
+                <a href="website/log-signup/handlers/logout.php" class="btn">Sign Out</a>
+                <a href="profile.php" class="btn">Profile (<?php echo htmlspecialchars((string)$_SESSION['username']); ?>)</a>
+            <?php else: ?>
+                <!-- Show Login and Sign Up buttons if not logged in -->
+                <a href="website/log-signup/login.html" class="btn">Login</a>
+                <a href="website/log-signup/signup.php" class="btn">Sign Up</a>
+            <?php endif; ?>
         </div>
     </div>
-    <h1>Personal Best Scores for <?= htmlspecialchars($selectedGame) ?></h1>
+    <h1><?= $username ?>'s Personal Best Scores for <?= htmlspecialchars($selectedGame) ?></h1>
 
     <!-- Game Selection Dropdown -->
     <form method="get">
@@ -85,45 +110,77 @@ $scores = $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
             ?>
         </select>
+
+        <br>
+        <br>
+
+        <!-- Username Field -->
+        <label for="username">Enter Username:</label>
+        <input type="text" name="username" id="username" value="<?php echo htmlspecialchars($username); ?>" />
+
+        <button type="submit">Submit</button>
     </form>
 
     <!-- Graph -->
     <canvas id="scoreChart" width="400" height="200"></canvas>
 
-    <script>
-        const ctx = document.getElementById('scoreChart').getContext('2d');
-        const chartData = {
-            labels: <?= json_encode(array_column($scores, 'date')) ?>,
-            datasets: [{
-                label: 'Personal Best Scores',
-                data: <?= json_encode(array_column($scores, 'score')) ?>,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
-        };
 
-        const scoreChart = new Chart(ctx, {
-            type: 'line',
-            data: chartData,
-            options: {
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Date'
+<script>
+    const ctx = document.getElementById('scoreChart').getContext('2d');
+
+    // Convert date strings to JavaScript timestamps
+    const labels = <?= json_encode(array_map(function($score) {
+        return strtotime($score['date']) * 1000; // Convert date to Unix timestamp in milliseconds
+    }, $scores)) ?>;
+console.log(labels);
+
+    // Extract scores
+    const data = <?= json_encode(array_column($scores, 'score')) ?>;
+
+    // Chart.js data configuration
+    const chartData = {
+        labels: labels, // Timestamps as labels
+        datasets: [{
+            label: 'Personal Best Scores',
+            data: data,
+            backgroundColor: 'rgba(255, 0, 0, 0.2)', // Area color (below the line)
+            borderColor: 'rgba(255, 0, 0, 1)', // Line color
+            borderWidth: 2, // Thickline
+            pointRadius: 4, // Large data points
+            pointBackgroundColor: 'rgba(255, 0, 0, 1)', // Data point color
+            pointBorderWidth: 2 // Border width for the data points
+        }]
+    };
+
+    // Create the chart
+    const scoreChart = new Chart(ctx, {
+        type: 'line',
+        data: chartData,
+        options: {
+            scales: {
+                x: {
+                    type: 'time', // Time scale
+                    time: {
+                        unit: 'minute', // You can adjust this to 'minute', 'hour', etc.
+                        displayFormats: {
+                            day: 'YYYY-MM-DD', // Format for the x-axis
                         }
                     },
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Score'
-                        }
+                    title: {
+                        display: true,
+                        text: 'Date'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Score'
                     }
                 }
             }
-        });
-    </script>
+        }
+    });
+</script>
 </body>
 </html>
