@@ -1,0 +1,36 @@
+/*
+  Platformer Game
+  CSS Styles for the game
+  Made by: Christopher Gronewold
+
+  Created 11/24/2024
+  Edited 11/24/2024 (Christopher Gronewold):
+      - Created initial CSS styles
+      - Set up body and canvas styling
+  Preconditions:
+      None
+  Postconditions:
+      Game canvas is centered and styled
+  Errors/exceptions:
+      None
+  Side effects:
+      None
+  Invariants:
+      None
+  Known faults:
+      None
+*/
+
+body { /* Styles for the body element */
+    margin: 0; /* Removes default margin */
+    padding: 0; /* Removes default padding */
+    display: flex; /* Uses flexbox for layout */
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    height: 100vh; /* Sets height to 100% of viewport height */
+    background-color: #f0f0f0; /* Sets background color */
+}
+
+#gameCanvas { /* Styles for the game canvas */
+    border: 1px solid #000; /* Adds a border to the canvas */
+}

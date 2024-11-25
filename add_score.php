@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Determine if the game uses "lower is better" scoring
     ; // Add games where lower scores are better
-    $lowerIsBetter = in_array($game, ['maze_game', 'spot', 'estimate', 'speedrun']);
+    $lowerIsBetter = in_array($game, ['maze_game', 'spot', 'estimate', 'Platformer']);
 
     // Check if this score is a personal best
     $query = "
