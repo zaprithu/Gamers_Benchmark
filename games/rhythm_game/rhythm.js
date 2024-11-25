@@ -61,12 +61,20 @@ function updateNotes(delta) {
     }
 }
 
-function endGame() {
+async function endGame() {
     overlay.style.display = 'flex';                                      // Show overlay
     gameStarted = false;                                                 // Game is no longer running
     noteSpeed = 0.2;
-    console.log(noteSpeed);
     notes = [];
+    if (score <= 0) return;
+    console.log(score);
+    await fetch('../../add_score.php', {
+        method: 'POST',
+        body: new URLSearchParams({
+            game: 'rhythm_game',
+            score: score
+        })
+    });
 }
 
 function drawNotes() {

@@ -446,11 +446,6 @@ body {
     font-weight: 500;
 }
 
-.player-country {
-    color: #666;
-    font-size: 0.9em;
-}
-
 /* Rank Styling */
 .rank {
     display: inline-block;

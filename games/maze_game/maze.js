@@ -501,7 +501,7 @@ function startGame() {                                                   // Func
     };
 }
 
-function endGame(won) {                                                  // Function to end game
+async function endGame(won) {                                                  // Function to end game
     gameOver = true;                                                     // Set game as over
     gameStarted = false;                                                 // Game is no longer running
     canRestart = false;                                                  // Prevent immediate restart
@@ -509,6 +509,14 @@ function endGame(won) {                                                  // Func
     if (won) {                                                           // If player won
         const time = (Date.now() - startTime) / 1000;                    // Calculate time taken
         message.textContent = `You won! Time: ${time.toFixed(2)}s\nPress any key to play again`;  // Show win message
+        console.log(1);
+        await fetch('../../add_score.php', {
+            method: 'POST',
+            body: new URLSearchParams({
+                game: 'maze_game',
+                score: time
+            })
+        });
     } else {                                                             // If player lost
         message.textContent = 'Game Over! Press any key to play again';  // Show lose message
     }

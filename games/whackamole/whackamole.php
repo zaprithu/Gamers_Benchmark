@@ -51,12 +51,12 @@ $username = $isLoggedIn ? $_SESSION['username'] : null;
         <!-- Navigation links to various sections/pages -->
         <div class="nav-links">
             <a href="../../index.php">Home</a>
-            <a href="leaderboard.html">Leaderboard</a>
+            <a href="../../website/leaderboard/leaderboard.php">Leaderboard</a>
             <a href="../../website/about/about.php">About</a>
             <!-- Show logout and profile buttons only if logged in -->
             <?php if ($isLoggedIn): ?>
                 <a href="../../website/log-signup/handlers/logout.php" class="btn">Sign Out</a>
-                <a href="profile.php" class="btn">Profile (<?php echo htmlspecialchars((string)$username); ?>)</a>
+                <a href="../../profile.php" class="btn">Profile (<?php echo htmlspecialchars((string)$username); ?>)</a>
             <?php else: ?>
                 <!-- Show Login and Sign Up buttons if not logged in -->
                 <a href="../../website/log-signup/login.html" class="btn">Login</a>
