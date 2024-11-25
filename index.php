@@ -153,12 +153,14 @@ $username = $isLoggedIn ? $_SESSION['username'] : null;
             <button class="btn" onclick="window.location.href='games/bullet_hell/bullet_hell.html'">Play</button> <!-- Link to game page -->
         </div>
 
+        <!-- Game Card: Speedrun -->
         <div class="game-card">
-            <img src="https://via.placeholder.com/200" alt="Platformer">
+            <img src="images/speedrun.PNG" alt="Platformer"> <!-- Image for the game -->
             <h3>Platformer Speedrun</h3>
-            <p></p>
-            <button class="btn-d">Play</button>
+            <p>Complete a platformer quickly</p>
+            <button class="btn" onclick="window.location.href='games/platformspeedrun/index.html'">Play</button> <!-- Link to game page -->
         </div>
+      
     </div>
 
     <!-- Footer Section -->
