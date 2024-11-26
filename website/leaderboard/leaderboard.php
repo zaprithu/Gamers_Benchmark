@@ -131,7 +131,7 @@ $playerCount = getPlayerCount($currentGame); // Fetch the total unique players f
                 <a href="../../profile.php" class="btn">Profile (<?php echo htmlspecialchars((string)$username); ?>)</a> <!-- Link to the profile page with the username -->
             <?php else: ?>
                 <!-- Display these links if the user is not logged in -->
-                <a href="../log-signup/login.html" class="btn">Login</a> <!-- Link to the login page -->
+                <a href="../log-signup/login.php" class="btn">Login</a> <!-- Link to the login page -->
                 <a href="../log-signup/signup.php" class="btn">Sign Up</a> <!-- Link to the signup page -->
             <?php endif; ?>
         </div>

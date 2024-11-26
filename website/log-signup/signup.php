@@ -59,16 +59,17 @@ $username = $isLoggedIn ? $_SESSION['username'] : null;
         </div>
         <!-- Navigation links to various sections/pages -->
         <div class="nav-links">
-            <a href="../../index.html">Home</a>
-            <a href="../leaderboard/leaderboard.php">Leaderboard</a>
-            <a href="../about/about.php">About</a>
+            <a href="../../index.php">Home</a>
+            <a href="../../website/leaderboard/leaderboard.php">Leaderboard</a>
+            <a href="../../website/about/about.php">About</a>
             <!-- Show logout and profile buttons only if logged in -->
             <?php if ($isLoggedIn): ?>
-                <a href="handlers/logout.php" class="btn">Sign Out</a>
+                <a href="../../website/log-signup/handlers/logout.php" class="btn">Sign Out</a>
                 <a href="../../profile.php" class="btn">Profile (<?php echo htmlspecialchars((string)$username); ?>)</a>
             <?php else: ?>
-                <!-- Show Login button if not logged in -->
-                <a href="login.html" class="btn">Login</a>
+                <!-- Show Login and Sign Up buttons if not logged in -->
+                <a href="../../website/log-signup/login.php" class="btn">Login</a>
+                <a href="../../website/log-signup/signup.php" class="btn">Sign Up</a>
             <?php endif; ?>
         </div>
     </div>
@@ -97,7 +98,7 @@ $username = $isLoggedIn ? $_SESSION['username'] : null;
             <!-- Sign up button styled with the "btn" class -->
             <button type="submit" class="btn">Sign Up</button>
             <!-- Link to login page for users who already have an account -->
-            <p>Already have an account? <a href="login.html">Log in</a></p>
+            <p>Already have an account? <a href="login.php">Log in</a></p>
         </form>
     </div>
 

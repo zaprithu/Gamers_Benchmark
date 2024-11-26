@@ -1,5 +1,5 @@
 <!--
-- Name of code artifact: login.html
+- Name of code artifact: login.php
 - Brief description of what the code does: This HTML file serves as a page for users to login to the "Gamers Benchmark" website so that their data is saved
 between games and so that they are able to pparticipate in the leaderboards. They are also able to navigate to the sign up page if they do not already have an account
 - Programmer’s name: Tommy Lam, Ethan Dirkes, Chase Entwistle, Christopher Gronewold, Zonaid Prithu
@@ -29,6 +29,16 @@ between games and so that they are able to pparticipate in the leaderboards. The
 - Any known faults:
 • Currently, some game buttons are disabled (btn-d class) and are placeholders until their pages are created.
 -->
+<?php
+session_start();
+
+// Check if the user is logged in
+$isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'];
+
+// Access the username stored in the session, with a fallback
+$username = $isLoggedIn ? $_SESSION['username'] : null;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,18 +52,26 @@ between games and so that they are able to pparticipate in the leaderboards. The
     <link rel="stylesheet" href="../../index.css">
 </head>
 <body>
-    <!-- Navigation bar at the top of the page -->
+    <!-- Navigation Bar -->
     <div class="navbar">
-        <!-- Logo section for branding -->
+        <!-- Site logo/title -->
         <div class="logo">
             <h2>Gamers Benchmark</h2>
         </div>
-        <!-- Navigation links to main sections of the website -->
+        <!-- Navigation links to various sections/pages -->
         <div class="nav-links">
             <a href="../../index.php">Home</a>
-            <a href="../leaderboard/leaderboard.php">Leaderboard</a>
-            <a href="../about/about.php">About</a>
-            <a href="signup.php">Sign Up</a>
+            <a href="../../website/leaderboard/leaderboard.php">Leaderboard</a>
+            <a href="../../website/about/about.php">About</a>
+            <!-- Show logout and profile buttons only if logged in -->
+            <?php if ($isLoggedIn): ?>
+                <a href="../../website/log-signup/handlers/logout.php" class="btn">Sign Out</a>
+                <a href="../../profile.php" class="btn">Profile (<?php echo htmlspecialchars((string)$username); ?>)</a>
+            <?php else: ?>
+                <!-- Show Login and Sign Up buttons if not logged in -->
+                <a href="../../website/log-signup/login.php" class="btn">Login</a>
+                <a href="../../website/log-signup/signup.php" class="btn">Sign Up</a>
+            <?php endif; ?>
         </div>
     </div>
 

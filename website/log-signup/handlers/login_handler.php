@@ -33,7 +33,7 @@ $password = $_POST['password'] ?? null;
 
 // Simple validation
 if (!$username || !$password) {
-    echo "<script>alert('Both fields are required.'); window.location.href='login.html';</script>";
+    echo "<script>alert('Both fields are required.'); window.location.href='login.php';</script>";
     exit;
 }
 
@@ -54,11 +54,11 @@ try {
         exit;
     } else {
         // Invalid credentials
-        echo "<script>alert('Invalid username or password.'); window.location.href='../login.html';</script>";
+        echo "<script>alert('Invalid username or password.'); window.location.href='../login.php';</script>";
         exit;
     }
 } catch (PDOException $e) {
-    echo "<script>alert('Error: " . $e->getMessage() . "'); window.location.href='../login.html';</script>";
+    echo "<script>alert('Error: " . $e->getMessage() . "'); window.location.href='../login.php';</script>";
     exit;
 }
 ?>

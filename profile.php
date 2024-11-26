@@ -91,7 +91,7 @@ $scores = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <a href="profile.php" class="btn">Profile (<?php echo htmlspecialchars((string)$_SESSION['username']); ?>)</a>
             <?php else: ?>
                 <!-- Show Login and Sign Up buttons if not logged in -->
-                <a href="website/log-signup/login.html" class="btn">Login</a>
+                <a href="website/log-signup/login.php" class="btn">Login</a>
                 <a href="website/log-signup/signup.php" class="btn">Sign Up</a>
             <?php endif; ?>
         </div>

@@ -74,7 +74,7 @@ try {
     $stmt->bindParam(':password_hash', $hashedPassword);
     $stmt->execute();
 
-    echo "<script>alert('User registered successfully!'); window.location.href='../login.html';</script>";
+    echo "<script>alert('User registered successfully!'); window.location.href='../login.php';</script>";
 } catch (PDOException $e) {
     echo "<script>alert('Error: " . $e->getMessage() . "'); window.location.href='../signup.php';</script>";
     exit;

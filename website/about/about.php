@@ -67,7 +67,7 @@ $username = $isLoggedIn ? $_SESSION['username'] : null;
                 <a href="../../profile.php" class="btn">Profile (<?php echo htmlspecialchars((string)$username); ?>)</a>
             <?php else: ?>
                 <!-- Show Login and Sign Up buttons if not logged in -->
-                <a href="../log-signup/login.html" class="btn">Login</a>
+                <a href="../log-signup/login.php" class="btn">Login</a>
                 <a href="../log-signup/signup.php" class="btn">Sign Up</a>
             <?php endif; ?>
         </div>
