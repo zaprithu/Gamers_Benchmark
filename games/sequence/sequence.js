@@ -2,6 +2,7 @@
     Simon Says Game
     Javascript functionality for game logic
     Made by: Ethan Dirkes
+    Audio generated from sfxr.me
 
     Created 11/9/2024
     Edited 11/10/2024 (Ethan):
@@ -10,6 +11,9 @@
         - Fixed timing of flashes so repeated colors now do seperate flashes
             instead of a long flash
         - Added time after last flash of sequence before player can start guessing
+    Edited 12/7/2024 (Ethan):
+        - Added audio to game
+    
     Preconditions:
         Only inputs are mouse clicks on the color buttons
     Postconditions:
@@ -32,6 +36,14 @@ let level = 0;                                      // Level the player is at
 let num_guesses = 0;                                // The number of guesses the player has for the current round
 let state = undefined;                              // State of the game
 let mouseover = false;                              // If the mouse is over a button
+
+// sounds for when each color is shown or pressed, wrong button press, and next level achieved
+const TONE1 = new Audio("tone1.wav");
+const TONE2 = new Audio("tone2.wav");
+const TONE3 = new Audio("tone3.wav");
+const TONE4 = new Audio("tone4.wav");
+const WRONG = new Audio("wrong.wav");
+const LVLUP = new Audio("levelup.wav");
 
 // Enum for game states
 const STATES = Object.freeze({
@@ -87,6 +99,7 @@ function showSequence() {
         // Get the ID of the color element to flash and add the 'active' tag to it
         const COLOR = document.getElementById(sequence[i]);
         COLOR.classList.add('active');
+        playColorAudio(sequence[i]);    // play tone corresponding to color
 
         // Remove 'active' tag after a time
         setTimeout(() => COLOR.classList.remove('active'), Math.max(1000/Math.sqrt(sequence.length), 100));
@@ -118,16 +131,19 @@ COLOR_ELEMENTS.forEach(colorElement => {
         switch(res) {
             // Incorrect, game over
             case 0:
+                WRONG.play();   // play incorrect sound
                 gameOver();
                 break;
             // Correct, end of sequence, next round
             case 1:
                 state = STATES.NEXTRND;
                 RESULTS.innerHTML = "Correct! Beginning next level...";
+                LVLUP.play();   // play level up sound
                 setTimeout(nextRound(), 1000);
                 break;
             // Correct
             default:
+                playColorAudio(COLOR);  // play tone corresponding to color
                 event.target.classList.add('hover');
         }
     });
@@ -183,4 +199,23 @@ function gameOver() {
             score: level - 1
         })
     });
+}
+
+// play a tone corresponding to the color passed into the function
+// frequency/pitch increases from tone 1 to 4 and are tied to
+// the colors on the board, left-to-right, top-to-bottom
+function playColorAudio(color) {
+    switch(color) {
+        case 'blue':
+            TONE1.play();
+            return;
+        case 'red':
+            TONE2.play();
+            return;
+        case 'green':
+            TONE3.play();
+            return;
+        default:
+            TONE4.play();
+    }
 }

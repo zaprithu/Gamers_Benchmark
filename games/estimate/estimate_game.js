@@ -4,8 +4,11 @@
     Made by: Ethan Dirkes
 
     Created 10/26/2024
-    Edited 10/27/2024:
-        Added comments
+    Edited 10/27/2024 (Ethan):
+        - Added comments
+    Edited 12/7/2024 (Ethan):
+        - Added background song before objects disappear
+
     Preconditions:
         Player must input a string as their guess for how many objects are present,
         which is parsed as an int (non-int characters are ignored).
@@ -33,6 +36,9 @@ var play_btn = document.getElementById("play_btn");
 
 // WebGL canvas context
 var gl = canvas.getContext('webgl', { preserveDrawingBuffer: true });
+
+const SONG = new Audio("waitsong.mp3"); // audio for the song that plays while time ticks
+SONG.volume = 0.2;  // default audio is too loud, have to lower it
 
 /*
     Vertex shader, draws for each vertex of the instance.
@@ -127,13 +133,19 @@ function generateObjects() {
         gl.drawArrays(gl.POINTS, 0, 1);
       }
       
-    // Call function to clear board after 10 seconds
+    // Call function to clear board after 10 seconds, start song
     timeoutID = setTimeout(()=>{gl.clear(gl.COLOR_BUFFER_BIT);}, 10000);
+    SONG.play();
 }
 
 function answerSubmitted() {
     // Cancel timeout timer
     clearTimeout(timeoutID);
+    
+    // Reset song
+    SONG.pause();
+    SONG.currentTime = 0;
+
     play_btn.classList.remove("btn-d");
     play_btn.classList.add("btn");
 

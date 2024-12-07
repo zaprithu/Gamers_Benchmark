@@ -69,7 +69,7 @@
     width: 200px;
     height: 200px;
     border-radius: 10px;
-    opacity: 0.6;
+    opacity: 0.4;
     transition: opacity 0.2s;
 }
 
@@ -78,7 +78,7 @@
 }
 
 .color.hover {
-    opacity: 0.8;
+    opacity: 1;
     cursor: pointer;
 }
 
@@ -101,9 +101,9 @@
 }
 
 #yellow {
-    background-color: gold;
+    background-color: orange;
     border-bottom-right-radius: 200px;
-    box-shadow: 0 0 4px gold;
+    box-shadow: 0 0 4px orange;
 }
 
 /* Additional styles needed for Spot the Object game */
