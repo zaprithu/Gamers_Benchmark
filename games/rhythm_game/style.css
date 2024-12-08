@@ -2,21 +2,13 @@
 /* Styling for maze game interface */
 /* Author: Christopher Gronewold */
 /* Created: 10/26/2024 */
+/* Modified 12/08/2024 by chase to fit rhythm game */
 /* Preconditions: None */
 /* Postconditions: Applies styles to HTML elements */
 /* Error conditions: None */
 /* Side effects: Visual changes to webpage */
 /* Invariants: None */
 /* Known faults: None */
-
-body {                                              /* Styles for entire document body */
-    margin: 0;                                      /* Removes default margin */
-    display: flex;                                  /* Uses flexbox layout */
-    justify-content: center;                        /* Centers content horizontally */
-    align-items: center;                           /* Centers content vertically */
-    min-height: 100vh;                             /* Sets minimum height to full viewport */
-    background: #333;                              /* Sets dark gray background */
-}
 
 #game-container {                                  /* Styles for main game container */
     position: relative;                            /* Enables absolute positioning of children */
@@ -41,6 +33,6 @@ body {                                              /* Styles for entire documen
 #message {                                         /* Styles for text messages */
     color: white;                                  /* Sets text color to white */
     font-size: 24px;                              /* Sets text size */
-    font-family: Arial, sans-serif;               /* Sets font family */
+    font-family: monaco;               /* Sets font family */
     text-align: center;                           /* Centers text alignment */
 }

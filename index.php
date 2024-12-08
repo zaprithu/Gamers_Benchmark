@@ -142,7 +142,7 @@ $username = $isLoggedIn ? $_SESSION['username'] : null;
             <img src="images/rhythm.jpg" alt="Rhythm">
             <h3>Rhythm</h3>
             <p>How long can you keep up with the rhythm?</p>
-            <button class="btn" onclick="window.location.href='games/rhythm_game/rhythm.html'">Play</button> <!-- Link to game page -->
+            <button class="btn" onclick="window.location.href='games/rhythm_game/rhythm.php'">Play</button> <!-- Link to game page -->
         </div>
 
         <!-- Game Card: Bullet Hell -->
