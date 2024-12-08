@@ -6,6 +6,8 @@
     Created: 11/9/2024
     Edited 11/10/2024 (Tommy):
         - Added comments
+    Edited 12/8/2024 (Tommy):
+        - Added audio to game
     Preconditions:
         - DOM must be loaded with required elements:
             - .game-container
@@ -27,6 +29,14 @@
     Known faults:
         None
 */
+
+// Audio for the game
+const CORRECT = new Audio("correct.mp3");
+const WRONG = new Audio("wrong.mp3");
+const MUSIC = new Audio("music.mp3");
+
+// Configure music to loop
+MUSIC.loop = true;
 
 // Main game class for Spot the Object game
 class SpotGame {
@@ -107,6 +117,19 @@ class SpotGame {
         object.style.left = `${pos.x}px`;
         object.style.top = `${pos.y}px`;
         
+        // Add click event listeners for audio
+        object.addEventListener('click', (e) => {
+            if (object.classList.contains('target')) {
+                // Correct target clicked
+                CORRECT.play();
+                this.handleGameEnd();
+            } else {
+                // Wrong object clicked
+                WRONG.play();
+                e.stopPropagation(); // Prevent further event propagation
+            }
+        });
+        
         return { object, shape, color };
     }
 
@@ -139,6 +162,10 @@ class SpotGame {
 
     // Handle end of game when target is found
     handleGameEnd() {
+        // Stop background music
+        MUSIC.pause();
+        MUSIC.currentTime = 0;
+
         // Calculate time taken to find object
         const endTime = (Date.now() - this.startTime) / 1000;
 
@@ -147,7 +174,7 @@ class SpotGame {
         resultDisplay.className = 'result-display';
         resultDisplay.innerHTML = `
             <h2>Great job!</h2>
-            <p>You found the object in ${endTime.toFixed(2)} seconds!</p>
+            <p style="align: center; white-space: nowrap;">You found the object in ${endTime.toFixed(2)} seconds!</p>
             <button class="btn" onclick="game.startGame()">Play Again</button>
         `;
         
@@ -166,6 +193,11 @@ class SpotGame {
 
     // Initialize and start a new game
     startGame() {
+        // Stop any existing music and restart
+        MUSIC.pause();
+        MUSIC.currentTime = 0;
+        MUSIC.play();
+
         // Hide start button and prepare game canvas
         this.startButton.style.display = 'none';
         this.gameCanvas.style.display = 'block';
@@ -174,7 +206,6 @@ class SpotGame {
         
         // Create and add target object
         const target = this.createObject(true);
-        target.object.addEventListener('click', () => this.handleGameEnd());
         this.gameCanvas.appendChild(target.object);
         
         // Show hint for target object
