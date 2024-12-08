@@ -8,6 +8,8 @@
         - Added comments
     Edited 11/24/2024 (Zonaid):
         - Added login-signin session and database functionality
+    Edited 12/8/2024 (Tommy):
+        - Fixing score display
     Preconditions:
         • index.css must be properly linked and accessible
         • PHP server must be running to handle data requests
@@ -203,7 +205,21 @@ $playerCount = getPlayerCount($currentGame); // Fetch the total unique players f
                                             </a> <!-- Link to the player's profile -->
                                         </span>
                                     </td>
-                                    <td><?php echo number_format($row['score'], 3); ?></td> <!-- Player score -->
+                                    <td>
+                                        <?php
+                                        // Define games where scores should be displayed with 3 decimal places
+                                        $decimalGames = ['maze_game', 'spot', 'bullet_hell', 'Platformer'];
+                                        $dbGameName = getDbGameName($currentGame);
+
+                                        // Conditionally format the score
+                                        if (in_array($dbGameName, $decimalGames)) {
+                                            echo number_format($row['score'], 3); // Three decimal places
+                                            echo " seconds";
+                                        } else {
+                                            echo number_format($row['score']); // No decimal places
+                                        }
+                                        ?>
+                                    </td> <!-- Player score -->
                                     <td><?php echo htmlspecialchars($row['date']); ?></td> <!-- Date of the score -->
                                 </tr>
                             <?php endforeach; ?>
