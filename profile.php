@@ -103,7 +103,7 @@ $scores = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <label for="game">Select a Game:</label>
         <select name="game" id="game" onchange="this.form.submit()">
             <?php
-            $games = ["baggle", "bullet_hell", "sequence", "maze_game", "spot", "estimate", "rhythm_game", "whackamole"];
+            $games = ["baggle", "bullet_hell", "sequence", "maze_game", "spot", "estimate", "rhythm_game", "whackamole", "Platformer"];
             foreach ($games as $game) {
                 $selected = $game === $selectedGame ? 'selected' : '';
                 echo "<option value=\"$game\" $selected>$game</option>";

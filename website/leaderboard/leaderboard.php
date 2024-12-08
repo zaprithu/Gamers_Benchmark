@@ -68,12 +68,19 @@ function getLeaderboardData($game) {
     global $db; // Use the global database connection
     try {
         $dbGameName = getDbGameName($game); // Convert display name to database name
+        $AscDesc = in_array($dbGameName, ['maze_game', 'spot', 'estimate', 'Platformer']) ? "ASC" : "DESC";
         $stmt = $db->prepare('
+            WITH RankedScores AS (
+                SELECT username, score, date,
+                       ROW_NUMBER() OVER (PARTITION BY username ORDER BY score ' . $AscDesc . ') AS row_num
+                FROM scores
+                WHERE game = :game
+            )
             SELECT username, score, date,
-                   RANK() OVER (ORDER BY score DESC) as rank
-            FROM scores
-            WHERE game = :game
-            ORDER BY score DESC
+                   RANK() OVER (ORDER BY score ' . $AscDesc . ') as rank
+            FROM RankedScores
+            WHERE row_num = 1
+            ORDER BY score ' .  $AscDesc . '
             LIMIT 10
         '); // Query to retrieve top 10 scores for the specified game, ordered by score
         $stmt->execute([':game' => $dbGameName]); // Execute the query with the game name as a parameter

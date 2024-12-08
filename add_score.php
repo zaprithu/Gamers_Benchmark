@@ -34,7 +34,7 @@ $isLoggedIn = isset($_SESSION['username']);
 $username = $isLoggedIn ? $_SESSION['username'] : null;
 
 // Check if the request method is POST
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($isLoggedIn && $_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get game name and score from POST data
     $game = $_POST['game'] ?? null;
     $score = $_POST['score'] ?? null;
