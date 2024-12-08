@@ -10,6 +10,7 @@
         • Ethan Dirkes - Oct 26, 2024: Seperate the style to index.css
         • Tommy Lam - Oct 27, 2024: Add prologue comment
         • Zonaid Prithu - November 24, 2024:  Added login-signin session and database functionality
+        • Tommy Lam - Dec 8, 2024: Added random game selection functionality
 - Preconditions:
 • Acceptable Input:
     • Users must access this page using a compatible web browser that supports HTML5, CSS, and JavaScript.
@@ -142,7 +143,7 @@ $username = $isLoggedIn ? $_SESSION['username'] : null;
             <img src="images/rhythm.jpg" alt="Rhythm">
             <h3>Rhythm</h3>
             <p>How long can you keep up with the rhythm?</p>
-            <button class="btn" onclick="window.location.href='games/rhythm_game/rhythm.php'">Play</button> <!-- Link to game page -->
+            <button class="btn" onclick="window.location.href='games/rhythm_game/rhythm.html'">Play</button> <!-- Link to game page -->
         </div>
 
         <!-- Game Card: Bullet Hell -->
@@ -162,7 +163,32 @@ $username = $isLoggedIn ? $_SESSION['username'] : null;
         </div>
       
     </div>
+    
+    <!-- Random Game Selection Script -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const startNowButton = document.querySelector('.hero .btn');
+        const gameButtons = document.querySelectorAll('.games .game-card .btn');
 
+        startNowButton.addEventListener('click', () => {
+            // Filter out any disabled game buttons
+            const activeGameButtons = Array.from(gameButtons);
+            
+            // Select a random game button
+            const randomGameButton = activeGameButtons[Math.floor(Math.random() * activeGameButtons.length)];
+            
+            // Use a more robust method to extract the URL
+            const onClick = randomGameButton.getAttribute('onclick');
+            const matches = onClick.match(/window\.location\.href='([^']+)'/);
+            
+            if (matches && matches[1]) {
+                // Redirect to the selected game
+                window.location.href = matches[1];
+            }
+        });
+    });
+    </script>
+    
     <!-- Footer Section -->
     <div class="footer">
         <!-- Footer content including copyright and privacy policy link -->
