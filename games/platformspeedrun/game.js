@@ -7,6 +7,8 @@
   Edited 11/24/2024 (Christopher Gronewold):
       - Implemented game logic
       - Added player movement, collision detection, and animations
+  Edited 11/24/2024 (Christopher Gronewold):
+	  - Fixed bug that made the game freeze once completed.
   Preconditions:
       HTML canvas element must exist with id 'gameCanvas'
   Postconditions:
@@ -771,18 +773,19 @@ function drawControls() { // Function to draw game controls
 }
 
 async function gameLoop() { // Main game loop function
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
-    drawControls(); // Draw game controls
-    updateCamera(); // Update camera position
-    drawMap(); // Draw game map
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+    drawControls(); // Draw the control instructions
+    updateCamera(); // Update the camera position
+    drawMap(); // Draw the game map
     update(); // Update game state
-    drawPlayer(); // Draw player
+    drawPlayer(); // Draw the player character
     
-    if (gameComplete) { // If game is complete
-        await drawEndScreen(); // Draw end screen
+    if (gameComplete) { // If the game is finished
+        const buttonPos = await drawEndScreen(); // Draw end screen and get button position
+        window.currentButtonPos = buttonPos; // Store button position globally for click handler
     }
     
-    requestAnimationFrame(gameLoop); // Request next animation frame
+    requestAnimationFrame(gameLoop); // Request next frame
 }
 
 document.addEventListener('keydown', (e) => { // Event listener for key press
@@ -810,20 +813,20 @@ document.addEventListener('keydown', (e) => { // Event listener for key press (f
     }
 });
 
-canvas.addEventListener('click', (e) => { // Event listener for canvas click
-    if (!gameComplete) return; // If game is not complete, exit function
+canvas.addEventListener('click', (e) => { // Add click event listener to canvas
+    if (!gameComplete) return; // Exit if game isn't complete
     
-    const rect = canvas.getBoundingClientRect(); // Get canvas bounding rectangle
-    const clickX = e.clientX - rect.left; // Calculate click X position
-    const clickY = e.clientY - rect.top; // Calculate click Y position
+    const rect = canvas.getBoundingClientRect(); // Get canvas position
+    const clickX = e.clientX - rect.left; // Calculate click X position relative to canvas
+    const clickY = e.clientY - rect.top; // Calculate click Y position relative to canvas
     
-    const buttonPos = drawEndScreen(); // Get end screen button position
+    const buttonPos = window.currentButtonPos; // Get stored button position
     
-    if (clickX >= buttonPos.buttonX && 
-        clickX <= buttonPos.buttonX + buttonPos.buttonWidth &&
-        clickY >= buttonPos.buttonY && 
-        clickY <= buttonPos.buttonY + buttonPos.buttonHeight) { // If click is within button bounds
-        // Reset game
+    if (buttonPos && // Check if button position exists
+        clickX >= buttonPos.buttonX && // Check if click is within button X bounds
+        clickX <= buttonPos.buttonX + buttonPos.buttonWidth && // Check if click is within button width
+        clickY >= buttonPos.buttonY && // Check if click is within button Y bounds
+        clickY <= buttonPos.buttonY + buttonPos.buttonHeight) { // Check if click is within button height
         gameComplete = false; // Reset game complete flag
         gameStartTime = Date.now(); // Reset game start time
         gameEndTime = null; // Reset game end time
