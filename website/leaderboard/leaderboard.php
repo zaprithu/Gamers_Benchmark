@@ -203,7 +203,7 @@ $playerCount = getPlayerCount($currentGame); // Fetch the total unique players f
                                             </a> <!-- Link to the player's profile -->
                                         </span>
                                     </td>
-                                    <td><?php echo number_format($row['score']); ?></td> <!-- Player score -->
+                                    <td><?php echo number_format($row['score'], 3); ?></td> <!-- Player score -->
                                     <td><?php echo htmlspecialchars($row['date']); ?></td> <!-- Date of the score -->
                                 </tr>
                             <?php endforeach; ?>
