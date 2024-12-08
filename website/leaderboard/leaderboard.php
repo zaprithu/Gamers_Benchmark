@@ -59,6 +59,7 @@ function getDbGameName($displayName) {
         'Simon Says' => 'sequence',
         'Rhythm' => 'rhythm_game',
         'Bullet Hell' => 'bullet_hell',
+        'Platformer' => 'Platformer',
     ];
     return $gameMap[$displayName] ?? $displayName; // Return the mapped name or default to the display name if not mapped
 }
@@ -153,7 +154,7 @@ $playerCount = getPlayerCount($currentGame); // Fetch the total unique players f
                 <?php
                 // Generate category links dynamically
                 $categories = ['Maze Navigation', 'Estimate', 'Spot the Object', 'Whack-A-Mole', 
-                               'Boggle', 'Simon Says', 'Rhythm', 'Bullet Hell'];
+                               'Boggle', 'Simon Says', 'Rhythm', 'Bullet Hell', 'Platformer'];
 
                 foreach ($categories as $category): 
                     $isActive = $category === $currentGame ? 'active' : ''; // Highlight the active category
