@@ -12,14 +12,27 @@
 body {                                              /* Styles for entire document body */
     margin: 0;                                      /* Removes default margin */
     display: flex;                                  /* Uses flexbox layout */
-    justify-content: center;                        /* Centers content horizontally */
-    align-items: center;                           /* Centers content vertically */
+    flex-direction: column;                         /* Stack elements vertically */
     min-height: 100vh;                             /* Sets minimum height to full viewport */
     background: #333;                              /* Sets dark gray background */
 }
 
+.navbar {                                          /* Styles for navigation bar */
+    width: 100%;                                   /* Full width */
+    position: sticky;                              /* Stick to top */
+    top: 0;                                        /* Align to top */
+    z-index: 1000;                                /* Ensure navbar stays on top */
+    background-color: #333;                        /* Match background color */
+}
+
 #game-container {                                  /* Styles for main game container */
     position: relative;                            /* Enables absolute positioning of children */
+    flex: 1;                                       /* Takes remaining space */
+    display: flex;                                 /* Uses flexbox layout */
+    justify-content: center;                       /* Centers content horizontally */
+    align-items: center;                           /* Centers content vertically */
+    margin: 20px 0;                               /* Add vertical spacing */
+    z-index: 1;                                   /* Lower than navbar */
 }
 
 #gameCanvas {                                      /* Styles for game canvas element */
@@ -43,4 +56,14 @@ body {                                              /* Styles for entire documen
     font-size: 24px;                              /* Sets text size */
     font-family: Arial, sans-serif;               /* Sets font family */
     text-align: center;                           /* Centers text alignment */
+}
+
+.footer {                                          /* Styles for footer */
+    width: 100%;                                   /* Full width */
+    margin-top: auto;                             /* Push to bottom */
+    background-color: #333;                        /* Match background color */
+    color: white;                                  /* White text */
+    text-align: center;                           /* Center text */
+    padding: 1rem 0;                              /* Add padding */
+    z-index: 1000;                                /* Same as navbar to stay on top */
 }
