@@ -306,7 +306,7 @@ function startGame() {
     gameLoop = setInterval(update, 1000 / 60); // Start game loop
 }
 
-function endGame() {
+async function endGame() {
     clearInterval(gameLoop); // Stop game loop
     const survivalTime = backgroundMusic.currentTime.toFixed(2); // Calculate survival time
     backgroundMusic.pause(); // Pause background music
@@ -328,21 +328,26 @@ function endGame() {
     ctx.font = gameOverText.font; // Set font
     ctx.fillStyle = gameOverText.color; // Set fill style
     ctx.textAlign = 'center'; // Set text alignment
-    ctx.fillText(gameOverText.text, canvas.width / 2, canvas.height / 3); // Draw game over text
+    ctx.fillText(gameOverText.text, canvas.width / 2, canvas.height / 3 - 30); // Draw game over text
 
-    // Survival Time text
-    ctx.font = '24px Arial'; // Set font
-    ctx.fillStyle = 'white'; // Set fill style
-    ctx.fillText(`You survived for ${survivalTime} seconds`, canvas.width / 2, canvas.height / 3 + 50); // Draw survival time text
-
-    startButton.style.display = 'block'; // Show start button
-    fetch('../../add_score.php', {
+    let res = await fetch('../../add_score.php', {
         method: 'POST',
         body: new URLSearchParams({
             game: 'bullet_hell',
             score: survivalTime
         })
     });
+    let pile = JSON.parse(await res.text()).percentile;
+
+    let suffix = ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'][pile % 10]
+
+    // Survival Time text
+    ctx.font = '24px Arial'; // Set font
+    ctx.fillStyle = 'white'; // Set fill style
+    ctx.fillText(`You survived for ${survivalTime} seconds`, canvas.width / 2, canvas.height / 3 + 20); // Draw survival time text
+    ctx.fillText(`This puts you in the ${pile}${suffix} percentile`, canvas.width / 2, canvas.height / 3 + 50); // Draw survival time text
+
+    startButton.style.display = 'block'; // Show start button
 }
 
 startButton.addEventListener('click', startGame); // Add click event listener to start button

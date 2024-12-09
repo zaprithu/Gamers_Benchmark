@@ -2,7 +2,6 @@
   Platformer Game
   JavaScript code for the game
   Made by: Christopher Gronewold
-
   Created 11/24/2024
   Edited 11/24/2024 (Christopher Gronewold):
       - Implemented game logic
@@ -99,7 +98,8 @@ let player = { // Defines the player object with initial properties
     touchingWall: false, // Whether player is touching a wall
     isWallClinging: false, // Whether player is wall clinging
     cornerForgivenessTime: 0, // Time for corner forgiveness
-    CORNER_FORGIVENESS_BUFFER: 100 // Buffer time for corner forgiveness
+    CORNER_FORGIVENESS_BUFFER: 100, // Buffer time for corner forgiveness
+    percentile: '',
 };
 
 function preloadImages() { // Function to preload images
@@ -288,13 +288,14 @@ async function drawEndScreen() { // Function to draw the end screen
     // Submit score if not already submitted
     if (!player.scoreSubmitted) { // If score not submitted
         try {
-            await fetch('../../add_score.php', { // Send score to server
+            let res = await fetch('../../add_score.php', { // Send score to server
                 method: 'POST',
                 body: new URLSearchParams({
                     game: 'Platformer',
                     score: timeTaken
                 })
             });
+            player.percentile = JSON.parse(await res.text()).percentile;
             player.scoreSubmitted = true; // Mark score as submitted
         } catch (error) {
             console.error('Error submitting score:', error); // Log error if submission fails
@@ -309,11 +310,15 @@ async function drawEndScreen() { // Function to draw the end screen
     ctx.fillStyle = 'white'; // Set text color to white
     ctx.font = 'bold 32px Arial'; // Set font
     ctx.textAlign = 'center'; // Set text alignment
-    ctx.fillText('Level Complete!', canvas.width/2, canvas.height/2 - 50); // Draw completion message
+    ctx.fillText('Level Complete!', canvas.width/2, canvas.height/2 - 80); // Draw completion message
     
     // Draw time
     ctx.font = '24px Arial'; // Set font
-    ctx.fillText(`Time: ${timeTaken.toFixed(2)} seconds`, canvas.width/2, canvas.height/2); // Draw time taken
+    ctx.fillText(`Time: ${timeTaken.toFixed(2)} seconds`, canvas.width/2, canvas.height/2 - 30); // Draw time taken
+    
+    // Draw percentile
+    ctx.font = '24px Arial'; // Set font
+    ctx.fillText(`Percentile: ${player.percentile}`, canvas.width/2, canvas.height/2); // Draw time taken
     
     // Draw button
     const buttonWidth = 200; // Set button width

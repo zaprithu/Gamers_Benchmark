@@ -161,7 +161,7 @@ class SpotGame {
     }
 
     // Handle end of game when target is found
-    handleGameEnd() {
+    async handleGameEnd() {
         // Stop background music
         MUSIC.pause();
         MUSIC.currentTime = 0;
@@ -169,26 +169,28 @@ class SpotGame {
         // Calculate time taken to find object
         const endTime = (Date.now() - this.startTime) / 1000;
 
-        // Create and display results
-        const resultDisplay = document.createElement('div');
-        resultDisplay.className = 'result-display';
-        resultDisplay.innerHTML = `
-            <h2>Great job!</h2>
-            <p style="align: center; white-space: nowrap;">You found the object in ${endTime.toFixed(2)} seconds!</p>
-            <button class="btn" onclick="game.startGame()">Play Again</button>
-        `;
-        
-        // Clear canvas and show results
-        this.gameCanvas.innerHTML = '';
-        this.gameCanvas.appendChild(resultDisplay);
-
-        fetch('../../add_score.php', {
+        let res = await fetch('../../add_score.php', {
             method: 'POST',
             body: new URLSearchParams({
                 game: 'spot',
                 score: endTime
             })
         });
+        let pile = JSON.parse(await res.text()).percentile;
+
+        // Create and display results
+        const resultDisplay = document.createElement('div');
+        resultDisplay.className = 'result-display';
+        resultDisplay.innerHTML = `
+            <h2>Great job!</h2>
+            <p style="align: center; white-space: nowrap;">You found the object in ${endTime.toFixed(2)} seconds!</p>
+            <p style="align: center; white-space: nowrap;">Your percentile was ${pile}</p>
+            <button class="btn" onclick="game.startGame()">Play Again</button>
+        `;
+        
+        // Clear canvas and show results
+        this.gameCanvas.innerHTML = '';
+        this.gameCanvas.appendChild(resultDisplay);
     }
 
     // Initialize and start a new game

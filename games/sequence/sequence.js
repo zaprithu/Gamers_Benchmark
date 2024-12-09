@@ -185,20 +185,22 @@ function checkSequence(color) {
 
 
 // Sequence incorrectly matched, game is over
-function gameOver() {
-    state = STATES.GAMEOVER;    // Change state
-    RESULTS.innerHTML = "Game over! Final score: " + (level - 1);   // Display final score
-
-    // Enable play button
-    START_BUTTON.classList.remove('btn-d');
-    START_BUTTON.classList.add('btn');
-    fetch('../../add_score.php', { // publish score to database
+async function gameOver() {
+    let res = await fetch('../../add_score.php', { // publish score to database
         method: 'POST',
         body: new URLSearchParams({
             game: 'sequence',
             score: level - 1
         })
     });
+    let pile = JSON.parse(await res.text()).percentile;
+
+    state = STATES.GAMEOVER;    // Change state
+    RESULTS.innerHTML = "Game over! Final score: " + (level - 1) + ". Percentile: " + pile + ".";   // Display final score
+
+    // Enable play button
+    START_BUTTON.classList.remove('btn-d');
+    START_BUTTON.classList.add('btn');
 }
 
 // play a tone corresponding to the color passed into the function

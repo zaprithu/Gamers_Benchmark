@@ -85,6 +85,7 @@ $username = $isLoggedIn ? $_SESSION['username'] : null;
         <div class="end-screen">
             <h2>Game Over!</h2>
             <p>Your Score: <span class="final-score">0</span></p>
+            <p>Your Percentile: <span class="percentile">0</span></p>
             <button class="play-again-button">Play Again</button>
         </div>
 

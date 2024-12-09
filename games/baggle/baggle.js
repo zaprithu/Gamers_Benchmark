@@ -121,20 +121,22 @@ function startGame() { // Defines the startGame function
     timerInterval = setInterval(updateTimer, 1000); // Starts a new timer interval
 }
 
-function endGame() { // Defines the endGame function
+async function endGame() { // Defines the endGame function
     clearInterval(timerInterval); // Clears the timer interval
     gameStarted = false; // Sets the game state to not started
     submitButton.disabled = true; // Disables the submit button
     wordInput.disabled = true; // Disables the word input
     
-    const playAgain = confirm(`Game Over! Your score: ${score}`); // Shows a game over message and asks to play again
-    fetch('../../add_score.php', { // publish score to database
+    let res = await fetch('../../add_score.php', { // publish score to database
         method: 'POST',
         body: new URLSearchParams({
             game: 'baggle',
             score: score
         })
     });
+    let pile = JSON.parse(await res.text()).percentile;
+
+    const playAgain = confirm(`Game Over!\nYour score: ${score}\nYour percentile: ${pile}`); // Shows a game over message and asks to play again
     if (playAgain) { // If the user wants to play again
         startGame(); // Starts a new game
     }

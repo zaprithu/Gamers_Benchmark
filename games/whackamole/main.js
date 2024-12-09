@@ -16,6 +16,7 @@ const timerEl = document.querySelector('.timer span')
 const startButton = document.querySelector('.start-button')
 const endScreen = document.querySelector('.end-screen')
 const finalScoreEl = document.querySelector('.final-score')
+const percentileEl = document.querySelector('.percentile')
 const playAgainButton = document.querySelector('.play-again-button')
 
 // Game state variables
@@ -54,20 +55,23 @@ function updateTimer() {
 }
 
 // Ends the game, stops all intervals, and displays the final score
-function endGame() {
+async function endGame() {
     clearInterval(gameInterval)   // Stop the timer interval
     clearTimeout(moleTimeout)     // Clear mole timeout to prevent further spawning
     clearTimeout(bombTimeout)     // Clear bomb timeout
     endScreen.style.display = 'flex' // Show the end screen
     finalScoreEl.textContent = score  // Display the final score
+    percentileEl.textContent = '';
     startButton.style.display = 'none' // Keep start button hidden
-    fetch('../../add_score.php', { // publish score to database
+    let res = await fetch('../../add_score.php', { // publish score to database
         method: 'POST',
         body: new URLSearchParams({
             game: 'whackamole',
             score: score
         })
     });
+    let pile = JSON.parse(await res.text()).percentile;
+    percentileEl.textContent = pile;
 }
 
 // Main game loop: spawns a mole, with a chance to spawn a bomb in a different hole

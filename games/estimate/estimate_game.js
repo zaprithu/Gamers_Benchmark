@@ -138,7 +138,7 @@ function generateObjects() {
     SONG.play();
 }
 
-function answerSubmitted() {
+async function answerSubmitted() {
     // Cancel timeout timer
     clearTimeout(timeoutID);
     
@@ -172,11 +172,13 @@ function answerSubmitted() {
         score = 0
         results.innerHTML = "Your guess was correct!";
     }
-    fetch('../../add_score.php', { // publish score to database
+    let res = await fetch('../../add_score.php', { // publish score to database
         method: 'POST',
         body: new URLSearchParams({
             game: 'estimate',
             score: score
         })
     });
+    let pile = JSON.parse(await res.text()).percentile;
+    results.innerHTML += `\r\nYour percentile was ${pile}.`;
 }
