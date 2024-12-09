@@ -2,6 +2,7 @@
 /* Styling for Baggle game interface */
 /* Author: Christopher Gronewold */
 /* Created: 11/10/2024 */
+/* Edited: 12/8/2024: Added header and footer */
 /* Preconditions: None */
 /* Postconditions: Applies styles to HTML elements */
 /* Error conditions: None */
@@ -11,16 +12,26 @@
 
 body { /* Styles for the body element */
     font-family: Arial, sans-serif; /* Sets the font family */
-    display: flex; /* Uses flexbox for layout */
-    justify-content: center; /* Centers content horizontally */
-    align-items: center; /* Centers content vertically */
-    height: 100vh; /* Sets the height to 100% of the viewport height */
     margin: 0; /* Removes default margin */
     background-color: #f0f0f0; /* Sets the background color */
+    min-height: 100vh; /* Sets minimum height to 100% of viewport height */
+    display: flex; /* Uses flexbox for layout */
+    flex-direction: column; /* Arranges children in a column */
 } /* Closes the body styles */
+
+.navbar { /* Styles for the navigation bar */
+    width: 100%; /* Sets full width */
+    position: sticky; /* Makes the navbar stick to the top */
+    top: 0; /* Aligns to top of viewport */
+} /* Closes the navbar styles */
 
 .container { /* Styles for the container class */
     text-align: center; /* Centers the text within the container */
+    flex: 1; /* Takes up remaining space */
+    display: flex; /* Uses flexbox for layout */
+    flex-direction: column; /* Arranges children in a column */
+    justify-content: center; /* Centers content vertically */
+    align-items: center; /* Centers content horizontally */
 } /* Closes the container styles */
 
 #board { /* Styles for the board element */
@@ -60,3 +71,8 @@ body { /* Styles for the body element */
     margin-top: 20px; /* Adds top margin */
     text-align: left; /* Aligns text to the left */
 } /* Closes the word list styles */
+
+.footer { /* Styles for the footer */
+    width: 100%; /* Sets full width */
+    margin-top: auto; /* Pushes footer to bottom */
+} /* Closes the footer styles */
