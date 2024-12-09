@@ -92,14 +92,17 @@ async function endGame() {
     overlay.style.display = 'flex';                                      // Show overlay
     gameStarted = false;                                                 // Game is no longer running
     noteSpeed = 0.12;
-    if (score <= 0) return;
-    fetch('../../add_score.php', {
+    let x = await fetch('../../add_score.php', {
         method: 'POST',
         body: new URLSearchParams({
             game: 'rhythm_game',
             score: score
         })
     });
+    let pile = JSON.parse(await x.text()).percentile;
+    document.getElementById('message').textContent = `Your score: ${score}\r\n`
+        + `Your percentile: ${pile}\r\n`
+        + `Press SPACE to restart`;
 }
 
 const key = new Image;

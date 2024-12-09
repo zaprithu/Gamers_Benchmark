@@ -508,15 +508,16 @@ async function endGame(won) {                                                  /
     overlay.style.display = 'flex';                                      // Show overlay
     if (won) {                                                           // If player won
         const time = (Date.now() - startTime) / 1000;                    // Calculate time taken
-        message.textContent = `You won! Time: ${time.toFixed(2)}s\nPress any key to play again`;  // Show win message
-        console.log(1);
-        await fetch('../../add_score.php', {
+        let res = await fetch('../../add_score.php', {
             method: 'POST',
             body: new URLSearchParams({
                 game: 'maze_game',
                 score: time
             })
         });
+        let pile = JSON.parse(await res.text()).percentile;
+        message.textContent = `Time: ${time.toFixed(2)}s\r\nPercentile: ${pile}\r\nPress any key to play again`;  // Show win message
+        console.log(1);
     } else {                                                             // If player lost
         message.textContent = 'Game Over! Press any key to play again';  // Show lose message
     }

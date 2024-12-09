@@ -1,4 +1,5 @@
-<!--
+<?php
+/*
 - Name of code artifact: add_score.php
 - Brief description of what the code does: This php file allows programmatic access for games to add scores to the scores table of the database. In javascript code, a fetch is made to this page which sends a POST request containing the score and the game that is being played.
 - Programmer’s name: Chase Entwistle
@@ -17,9 +18,39 @@
 • Return Values or Types:
     • The columns added to the table are "username", "game", "score", and "date"
     • The date column will be in the format YYYY-MM-DD XX:XX:XX
--->
-<?php
+*/
 session_start(); // Start the session for accessing session variables
+
+function getScorePercentile($score, $game) {
+    // Determine if the game uses "lower is better" scoring
+    // Add games where lower scores are better
+    $lowerIsBetter = in_array($game, ['maze_game', 'spot', 'estimate', 'Platformer']);
+
+    global $db; // Use the global database connection
+    try {
+        $stmt = $db->prepare('
+            WITH PersonalBestScores AS (
+                SELECT username, ' . ($lowerIsBetter ? "MIN" : "MAX") . '(score) AS best_score
+                FROM scores
+                WHERE game = :game
+                GROUP BY username
+            )
+            SELECT :score AS current_score,
+                   100.0 * (SELECT COUNT(*)
+                            FROM PersonalBestScores
+                            WHERE best_score ' . ($lowerIsBetter ? ">" : "<") . ' CAST(:score AS REAL)) / 
+                   (SELECT COUNT(*) FROM PersonalBestScores) AS percentile
+            FROM PersonalBestScores
+            LIMIT 1;
+        '); // Query to calculate the percentile of the given score
+        $stmt->execute([':score' => $score, ':game' => $game]); // Execute with the given score
+        $result = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the result as an associative array
+
+        return min(floor($result['percentile']), 99); // Return the percentile value
+    } catch (PDOException $e) {
+        return null; // Return null if there is an error
+    }
+}
 
 // Connect to the SQLite database
 try {
@@ -33,19 +64,22 @@ try {
 $isLoggedIn = isset($_SESSION['username']);
 $username = $isLoggedIn ? $_SESSION['username'] : null;
 
+// Get game name and score from POST data
+$game = $_POST['game'] ?? null;
+$score = $_POST['score'] ?? null;
+
+// Validate input
+if (!$game || !is_numeric($score) || $_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(400); // Bad Request
+    echo json_encode(["error" => "Invalid game or score."]);
+    exit;
+}
+
+$pile = getScorePercentile($score, $game);
+
 // Check if the request method is POST
-if ($isLoggedIn && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get game name and score from POST data
-    $game = $_POST['game'] ?? null;
-    $score = $_POST['score'] ?? null;
-
-    // Validate input
-    if (!$game || !is_numeric($score)) {
-        http_response_code(400); // Bad Request
-        echo json_encode(["error" => "Invalid game or score."]);
-        exit;
-    }
-
+// If so, try adding score to database
+if ($isLoggedIn ) {
     // Determine if the game uses "lower is better" scoring
     ; // Add games where lower scores are better
     $lowerIsBetter = in_array($game, ['maze_game', 'spot', 'estimate', 'Platformer']);
@@ -70,13 +104,9 @@ if ($isLoggedIn && $_SERVER['REQUEST_METHOD'] === 'POST') {
             VALUES (:username, :game, :score, CURRENT_TIMESTAMP)";
         $insertStmt = $db->prepare($insertQuery);
         $insertStmt->execute([':username' => $username, ':game' => $game, ':score' => $score]);
-
-        echo json_encode(["success" => true, "message" => "New personal best recorded!"]);
-    } else {
-        echo json_encode(["success" => false, "message" => "Score is not a personal best."]);
     }
-} else {
-    http_response_code(405); // Method Not Allowed
-    echo json_encode(["error" => "Invalid request method."]);
 }
+
+// Even if user is not logged in, try returning the percentile
+echo json_encode(["success" => true, "percentile" => $pile]);
 ?>

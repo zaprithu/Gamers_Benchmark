@@ -49,6 +49,7 @@ body {                                              /* Styles for entire documen
     justify-content: center;                       /* Centers content horizontally */
     align-items: center;                           /* Centers content vertically */
     background: rgba(0, 0, 0, 0.7);               /* Semi-transparent black background */
+    white-space: pre-line;
 }
 
 #message {                                         /* Styles for text messages */
