@@ -10,19 +10,52 @@
 /* Known faults: None */
 body {
     margin: 0; /* Remove default margin */
+    min-height: 100vh; /* Minimum full viewport height */
+    background-color: #000; /* Black background */
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack elements vertically */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.navbar {
+    width: 100%; /* Full width */
+    position: sticky; /* Stick to top */
+    top: 0; /* Align to top */
+    z-index: 1000; /* Ensure navbar stays on top */
+    background-color: #333; /* Add background color to ensure content doesn't show through */
+}
+
+.game-container {
+    flex: 1; /* Take remaining space */
     display: flex; /* Use flexbox for centering */
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
-    height: 100vh; /* Full viewport height */
-    background-color: #000; /* Black background */
+    position: relative; /* For absolute positioning of children */
+    z-index: 1; /* Lower z-index than navbar */
+    margin-top: 20px; /* Add some space below navbar */
+    margin-bottom: 20px; /* Add some space above footer */
 }
 
 #gameCanvas {
     border: 1px solid #fff; /* White border around canvas */
+    position: relative; /* Ensure proper stacking */
+    z-index: 1; /* Lower z-index than navbar */
 }
 
 #startButton {
     position: absolute; /* Position button absolutely */
     font-size: 24px; /* Set font size */
     padding: 10px 20px; /* Add padding */
+    z-index: 2; /* Higher than canvas but lower than navbar */
+}
+
+.footer {
+    width: 100%; /* Full width */
+    margin-top: auto; /* Push to bottom */
+    background-color: #333; /* Dark background */
+    color: white; /* White text */
+    text-align: center; /* Center text */
+    padding: 1rem 0; /* Add padding */
+    position: relative; /* Ensure proper stacking */
+    z-index: 1000; /* Same as navbar to stay on top */
 }
