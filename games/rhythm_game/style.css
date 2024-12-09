@@ -10,29 +10,72 @@
 /* Invariants: None */
 /* Known faults: None */
 
-#game-container {                                  /* Styles for main game container */
-    position: relative;                            /* Enables absolute positioning of children */
+.page-container { /* Main page container styles */
+    display: flex; /* Uses flexbox layout */
+    flex-direction: column; /* Arranges items vertically */
+    min-height: 100vh; /* Sets minimum height to full viewport */
+    margin: 0; /* Removes margin */
+    padding: 0; /* Removes padding */
 }
 
-#gameCanvas {                                      /* Styles for game canvas element */
-    background: #fff;                              /* Sets white background for game area */
+.content-wrapper { /* Content wrapper styles */
+    flex: 1; /* Takes remaining space */
+    display: flex; /* Uses flexbox layout */
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    padding: 20px; /* Adds padding around content */
+    margin-top: 60px; /* Adds space below navbar */
 }
 
-#overlay {                                         /* Styles for game message overlay */
-    position: absolute;                            /* Positions overlay relative to container */
-    top: 0;                                        /* Aligns to top of container */
-    left: 0;                                       /* Aligns to left of container */
-    width: 100%;                                   /* Takes full width of container */
-    height: 100%;                                  /* Takes full height of container */
-    display: flex;                                 /* Uses flexbox layout */
-    justify-content: center;                       /* Centers content horizontally */
-    align-items: center;                           /* Centers content vertically */
-    background: rgba(0, 0, 0, 0.7);               /* Semi-transparent black background */
+#game-container { /* Game container styles */
+    position: relative; /* Enables absolute positioning of children */
+    background: #fff; /* Sets white background */
+    margin: auto; /* Centers container */
 }
 
-#message {                                         /* Styles for text messages */
-    color: white;                                  /* Sets text color to white */
-    font-size: 24px;                              /* Sets text size */
-    font-family: monaco;               /* Sets font family */
-    text-align: center;                           /* Centers text alignment */
+#gameCanvas { /* Game canvas styles */
+    display: block; /* Removes inline spacing */
+    background: #fff; /* Sets white background */
+}
+
+#overlay { /* Overlay styles */
+    position: absolute; /* Positions absolutely within container */
+    top: 0; /* Aligns to top */
+    left: 0; /* Aligns to left */
+    width: 100%; /* Takes full width */
+    height: 100%; /* Takes full height */
+    display: flex; /* Uses flexbox layout */
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    background: rgba(0, 0, 0, 0.7); /* Sets semi-transparent background */
+}
+
+#message { /* Message styles */
+    color: white; /* Sets text color */
+    font-size: 24px; /* Sets font size */
+    font-family: monaco; /* Sets font family */
+    text-align: center; /* Centers text */
+}
+
+.navbar { /* Navigation bar styles */
+    position: fixed; /* Fixes position to viewport */
+    top: 0; /* Aligns to top */
+    width: 100%; /* Takes full width */
+    z-index: 1000; /* Sets stacking order */
+    background-color: #333; /* Sets background color */
+}
+
+.footer { /* Footer styles */
+    width: 100%; /* Takes full width */
+    background-color: #333; /* Sets background color */
+    color: white; /* Sets text color */
+    text-align: center; /* Centers text */
+    padding: 1rem 0; /* Adds vertical padding */
+    margin-top: auto; /* Pushes to bottom */
+}
+
+body { /* Body styles */
+    margin: 0; /* Removes margin */
+    padding: 0; /* Removes padding */
+    overflow-x: hidden; /* Hides horizontal overflow */
 }

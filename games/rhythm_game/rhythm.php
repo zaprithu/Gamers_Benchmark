@@ -1,4 +1,4 @@
-<!-- rhythm.html -->
+<!-- rhythm.php -->
 <!-- A rhythm game -->
 <!-- Author: Chase Entwistle -->
 <!-- Created: 10/26/2024 -->
@@ -9,66 +9,63 @@
 <!-- Invariants: None -->
 <!-- Known faults: None -->
 
-<!DOCTYPE html>                                           <!-- Declares HTML5 document type -->
-<?php
-session_start();
+<!DOCTYPE html> <!-- Declares document type -->
+<?php // Start PHP code block
+session_start(); // Initialize PHP session
 
 // Check if the user is logged in
-$isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'];
+$isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in']; // Set login status
 
 // Access the username stored in the session, with a fallback
-$username = $isLoggedIn ? $_SESSION['username'] : null;
+$username = $isLoggedIn ? $_SESSION['username'] : null; // Get username if logged in
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Basic HTML metadata for page setup -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gamers Benchmark</title>
-    <link rel="stylesheet" type="text/css" href="../../index.css"> 
-    <link rel="stylesheet" type="text/css" href="style.css"> 
-</head>
-<body>
+<!DOCTYPE html> <!-- Declares document type -->
+<html lang="en"> <!-- Sets document language to English -->
+<head> <!-- Start of head section -->
+    <meta charset="UTF-8"> <!-- Sets character encoding -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Sets viewport properties -->
+    <title>Gamers Benchmark</title> <!-- Sets page title -->
+    <link rel="stylesheet" type="text/css" href="../../index.css"> <!-- Links main stylesheet -->
+    <link rel="stylesheet" type="text/css" href="style.css"> <!-- Links game-specific stylesheet -->
+</head> <!-- End of head section -->
+<body> <!-- Start of body section -->
+    <div class="page-container"> <!-- Main page container -->
+        <!-- Navigation Bar -->
+        <div class="navbar"> <!-- Navigation bar container -->
+            <div class="logo"> <!-- Logo container -->
+                <h2>Gamers Benchmark</h2> <!-- Site title -->
+            </div> <!-- End logo container -->
+            <div class="nav-links"> <!-- Navigation links container -->
+                <a href="../../index.php">Home</a> <!-- Home link -->
+                <a href="../../website/leaderboard/leaderboard.php">Leaderboard</a> <!-- Leaderboard link -->
+                <a href="../../website/about/about.php">About</a> <!-- About link -->
+                <?php if ($isLoggedIn): ?> <!-- Check if user is logged in -->
+                    <a href="../../website/log-signup/handlers/logout.php" class="btn">Sign Out</a> <!-- Logout button -->
+                    <a href="../../profile.php" class="btn">Profile (<?php echo htmlspecialchars((string)$username); ?>)</a> <!-- Profile link -->
+                <?php else: ?> <!-- If user is not logged in -->
+                    <a href="../../website/log-signup/login.php" class="btn">Login</a> <!-- Login button -->
+                    <a href="../../website/log-signup/signup.php" class="btn">Sign Up</a> <!-- Sign up button -->
+                <?php endif; ?> <!-- End PHP if statement -->
+            </div> <!-- End navigation links -->
+        </div> <!-- End navigation bar -->
 
-    <!-- Navigation Bar -->
-    <div class="navbar">
-        <!-- Site logo/title -->
-        <div class="logo">
-            <h2>Gamers Benchmark</h2>
-        </div>
-        <!-- Navigation links to various sections/pages -->
-        <div class="nav-links">
-            <a href="../../index.php">Home</a>
-            <a href="../../website/leaderboard/leaderboard.php">Leaderboard</a>
-            <a href="../../website/about/about.php">About</a>
-            <!-- Show logout and profile buttons only if logged in -->
-            <?php if ($isLoggedIn): ?>
-                <a href="../../website/log-signup/handlers/logout.php" class="btn">Sign Out</a>
-                <a href="../../profile.php" class="btn">Profile (<?php echo htmlspecialchars((string)$username); ?>)</a>
-            <?php else: ?>
-                <!-- Show Login and Sign Up buttons if not logged in -->
-                <a href="../../website/log-signup/login.php" class="btn">Login</a>
-                <a href="../../website/log-signup/signup.php" class="btn">Sign Up</a>
-            <?php endif; ?>
-        </div>
-    </div>
+        <!-- Game Container -->
+        <div class="content-wrapper"> <!-- Content wrapper -->
+            <div id="game-container"> <!-- Game container -->
+                <div id="overlay"> <!-- Overlay container -->
+                    <div id="message">Press space to start</div> <!-- Start message -->
+                </div> <!-- End overlay -->
+                <canvas id="gameCanvas" width="500" height="600"></canvas> <!-- Game canvas -->
+            </div> <!-- End game container -->
+        </div> <!-- End content wrapper -->
 
-    <div class="hero">
-        <div id="game-container">                          <!-- Main container for game elements -->
-            <div id="overlay">                             <!-- Overlay for game messages -->
-                <div id="message">Press space to start</div>  <!-- Text display for game messages -->
-            </div>                                         <!-- End of overlay div -->
-            <canvas id="gameCanvas" width="500" height="600"></canvas>              <!-- Canvas element where game is drawn -->
-        </div>                                            <!-- End of game container -->
-    </div>
-    <script src="rhythm.js"></script>                   <!-- Links to external JavaScript file -->
+        <!-- Footer -->
+        <div class="footer"> <!-- Footer container -->
+            <p>&copy; 2024 Gamers Benchmark. All rights reserved. | <a href="#">Privacy Policy</a></p> <!-- Footer content -->
+        </div> <!-- End footer -->
+    </div> <!-- End page container -->
 
-    <!-- Footer -->
-    <div class="footer">
-        <p>&copy; 2024 Gamers Benchmark. All rights reserved. | <a href="#">Privacy Policy</a></p>
-    </div>
-</body>
-
-</html>
+    <script src="rhythm.js"></script> <!-- Links to game script -->
+</body> <!-- End body section -->
+</html> <!-- End HTML document -->
