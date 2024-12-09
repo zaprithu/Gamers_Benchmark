@@ -79,7 +79,7 @@ $pile = getScorePercentile($score, $game);
 
 // Check if the request method is POST
 // If so, try adding score to database
-if ($isLoggedIn ) {
+if ($isLoggedIn) {
     // Determine if the game uses "lower is better" scoring
     ; // Add games where lower scores are better
     $lowerIsBetter = in_array($game, ['maze_game', 'spot', 'estimate', 'Platformer']);
