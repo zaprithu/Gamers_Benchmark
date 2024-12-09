@@ -98,7 +98,7 @@ $username = $isLoggedIn ? $_SESSION['username'] : null;
             <img src="images/maze.PNG" alt="Maze"> <!-- Image for the game -->
             <h3>Maze Navigation</h3>
             <p>Dodge the Minotaurs to make it to the treasure!</p>
-            <button class="btn" onclick="window.location.href='games/maze_game/maze.html'">Play</button> <!-- Link to game page -->
+            <button class="btn" onclick="window.location.href='games/maze_game/maze.php'">Play</button> <!-- Link to game page -->
         </div>
         
         <!-- Game Card: Estimate Number of Objects -->
@@ -129,7 +129,7 @@ $username = $isLoggedIn ? $_SESSION['username'] : null;
             <img src="images/baggle.PNG" alt="Baggle"> <!-- Image for the game -->
             <h3>Baggle</h3>
             <p>How many words can you find?</p>
-            <button class="btn" onclick="window.location.href='games/baggle/baggle.html'">Play</button> <!-- Link to game page -->
+            <button class="btn" onclick="window.location.href='games/baggle/baggle.php'">Play</button> <!-- Link to game page -->
         </div>
 
         <div class="game-card">
@@ -143,7 +143,7 @@ $username = $isLoggedIn ? $_SESSION['username'] : null;
             <img src="images/rhythm.jpg" alt="Rhythm">
             <h3>Rhythm</h3>
             <p>How long can you keep up with the rhythm?</p>
-            <button class="btn" onclick="window.location.href='games/rhythm_game/rhythm.html'">Play</button> <!-- Link to game page -->
+            <button class="btn" onclick="window.location.href='games/rhythm_game/rhythm.php'">Play</button> <!-- Link to game page -->
         </div>
 
         <!-- Game Card: Bullet Hell -->
@@ -151,7 +151,7 @@ $username = $isLoggedIn ? $_SESSION['username'] : null;
             <img src="images/bullethell.PNG" alt="Bullet Hell"> <!-- Image for the game -->
             <h3>Bullet Hell</h3>
             <p>Survive as long as you can in an epic space battle! (Headphones Recommended)</p>
-            <button class="btn" onclick="window.location.href='games/bullet_hell/bullet_hell.html'">Play</button> <!-- Link to game page -->
+            <button class="btn" onclick="window.location.href='games/bullet_hell/bullet_hell.php'">Play</button> <!-- Link to game page -->
         </div>
 
         <!-- Game Card: Speedrun -->
@@ -159,7 +159,7 @@ $username = $isLoggedIn ? $_SESSION['username'] : null;
             <img src="images/speedrun.PNG" alt="Platformer"> <!-- Image for the game -->
             <h3>Platformer Speedrun</h3>
             <p>Complete a platformer quickly</p>
-            <button class="btn" onclick="window.location.href='games/platformspeedrun/index.html'">Play</button> <!-- Link to game page -->
+            <button class="btn" onclick="window.location.href='games/platformspeedrun/platformer.php'">Play</button> <!-- Link to game page -->
         </div>
       
     </div>
