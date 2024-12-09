@@ -1,0 +1,43 @@
+body { /* Styles for the body element */
+    margin: 0; /* Removes default margin */
+    padding: 0; /* Removes default padding */
+    min-height: 100vh; /* Sets minimum height to full viewport height */
+    display: flex; /* Uses flexbox for layout */
+    flex-direction: column; /* Stack elements vertically */
+    background-color: #f0f0f0; /* Sets background color */
+}
+
+.navbar { /* Styles for navigation bar */
+    width: 100%; /* Full width */
+    position: sticky; /* Stick to top */
+    top: 0; /* Align to top */
+    z-index: 1000; /* Ensure navbar stays on top */
+}
+
+.game-container { /* Styles for game container */
+    flex: 1; /* Take remaining space */
+    display: flex; /* Uses flexbox for layout */
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    margin: 20px 0; /* Add vertical spacing */
+}
+
+#gameCanvas { /* Styles for the game canvas */
+    border: 1px solid #000; /* Adds a border to the canvas */
+}
+
+.footer { /* Styles for footer */
+    width: 100%; /* Full width */
+    margin-top: auto; /* Push to bottom */
+    background-color: #333; /* Match background color */
+    color: white; /* White text */
+    text-align: center; /* Center text */
+    padding: 1rem 0; /* Add padding */
+    z-index: 1000; /* Same as navbar to stay on top */
+}
+
+html, body {
+    position: fixed; /* Fix position */
+    width: 100%; /* Add width */
+    height: 100%; /* Add height */
+}
